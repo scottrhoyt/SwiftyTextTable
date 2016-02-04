@@ -47,7 +47,8 @@ public struct TextTable {
         let values = values.count >= columns.count ? values :
             values + [CustomStringConvertible](count: columns.count - values.count, repeatedValue: "")
         columns = zip(columns, values).map {
-            (var column, let value) in
+            (column, value) in
+            var column = column
             column.values.append(value.description)
             return column
         }
