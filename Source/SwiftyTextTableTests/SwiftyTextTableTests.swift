@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import SwiftyTextTable
+import SwiftyTextTable
 
 class SwiftyTextTableTests: XCTestCase {
 
@@ -16,7 +16,7 @@ class SwiftyTextTableTests: XCTestCase {
         let bar = TextTableColumn(header: "bar")
         let baz = TextTableColumn(header: "baz")
         var table = TextTable(columns: [foo, bar, baz])
-        table.addRow(1, 2)
+        table.addRow("1", "2")
         table.addRow(11, 22, 33)
         table.addRow(111, 222, 333, 444)
         let output = table.render()

@@ -8,6 +8,12 @@
 
 import Foundation
 
+extension String: CustomStringConvertible {
+    public var description: String {
+        return self
+    }
+}
+
 private extension String {
     private func withPadding(count: Int) -> String {
         let length = characters.count
@@ -44,11 +50,8 @@ public struct TextTable {
     }
 
     public mutating func addRow(values: CustomStringConvertible...) {
-        var values = values
-        if values.count < columns.count {
-            let blank: CustomStringConvertible = ""
-            values.appendContentsOf([CustomStringConvertible](count: columns.count - values.count, repeatedValue: blank))
-        }
+        let values = values.count >= columns.count ? values :
+            values + [CustomStringConvertible](count: columns.count - values.count, repeatedValue: "")
         columns = zip(columns, values).map {
             (column, value) in
             var column = column
