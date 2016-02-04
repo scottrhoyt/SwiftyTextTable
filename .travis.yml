@@ -1,0 +1,13 @@
+language: objective-c
+
+osx_image: xcode7.2
+
+before_script:
+  - ./scripts/upstall-xctool.sh
+  - ./scripts/upstall-swiftlint.sh
+
+script:
+- xctool test -scheme SwiftyTextTable
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
