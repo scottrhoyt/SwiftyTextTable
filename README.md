@@ -8,6 +8,8 @@ A lightweight Swift library for generating text tables.
 ## Usage
 
 ```swift
+import SwiftyTextTable
+
 // First create some columns
 let foo = TextTableColumn(header: "foo")
 let bar = TextTableColumn(header: "bar")
