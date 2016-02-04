@@ -2,8 +2,11 @@ import PackageDescription
 
 let package = Package(
   name: "SwiftyTextTable",
-  exclude: ["Source/SwiftyTextTableTests"],
   targets: [
-    Target(name: "SwiftyTextTable")
+    Target(name: "SwiftyTextTable"),
+    Target(name: "SwiftyTextTableTests",
+      dependencies: [
+        .Target(name: "SwiftyTextTable")
+      ]),
   ]
 )
