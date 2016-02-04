@@ -6,6 +6,40 @@ A lightweight Swift library for generating text tables.
 [![codecov.io](https://codecov.io/github/scottrhoyt/SwiftyTextTable/coverage.svg?branch=master)](https://codecov.io/github/scottrhoyt/SwiftyTextTable?branch=master)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 
+## Installation
+
+### Carthage (iOS 8+, OS X 10.9+)
+You can use [Carthage](https://github.com/Carthage/Carthage) to install
+`SwiftyTextTable` by adding it to your `Cartfile`:
+```
+github "scottrhoyt/SwiftyTextTable"
+```
+
+### Swift Package Manager
+You can use [The Swift Package Manager](https://swift.org/package-manager) to
+install `SwiftyTextTable` by adding the proper description to your
+`Package.swift` file:
+```swift
+import PackageDescription
+
+let package = Package(
+    name: "YOUR_PROJECT_NAME",
+    targets: [],
+    dependencies: [
+        .Package(url: "https://github.com/scottrhoyt/SwiftyTextTable.git", versions: "0.1.0" ..< Version.max)
+    ]
+)
+```
+
+Note that the [Swift Package Manager](https://swift.org/package-manager) is
+still in early design and development, for more infomation checkout its
+[GitHub Page](https://github.com/apple/swift-package-manager)
+
+### Manual
+
+Simply copy the `*.swift` files from the `Source/SwiftyTextTable` directory into
+your project.
+
 ## Usage
 
 ```swift
