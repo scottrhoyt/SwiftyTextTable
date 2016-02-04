@@ -10,6 +10,7 @@
 		3B5BDCEA1C63133100592068 /* SwiftyTextTable.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B5BDCE91C63133100592068 /* SwiftyTextTable.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3B5BDCF11C63133100592068 /* SwiftyTextTable.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B5BDCE61C63133100592068 /* SwiftyTextTable.framework */; };
 		3B5BDCF61C63133100592068 /* SwiftyTextTableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5BDCF51C63133100592068 /* SwiftyTextTableTests.swift */; };
+		3B5BDD021C63138500592068 /* TextTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5BDD011C63138500592068 /* TextTable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +30,7 @@
 		3B5BDCF01C63133100592068 /* SwiftyTextTableTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftyTextTableTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B5BDCF51C63133100592068 /* SwiftyTextTableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyTextTableTests.swift; sourceTree = "<group>"; };
 		3B5BDCF71C63133100592068 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3B5BDD011C63138500592068 /* TextTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextTable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +75,7 @@
 			children = (
 				3B5BDCE91C63133100592068 /* SwiftyTextTable.h */,
 				3B5BDCEB1C63133100592068 /* Info.plist */,
+				3B5BDD011C63138500592068 /* TextTable.swift */,
 			);
 			path = SwiftyTextTable;
 			sourceTree = "<group>";
@@ -194,6 +197,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3B5BDD021C63138500592068 /* TextTable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -305,6 +309,7 @@
 		3B5BDCFB1C63133100592068 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -314,15 +319,18 @@
 				INFOPLIST_FILE = SwiftyTextTable/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = com.scotthoyt.SwiftyTextTable;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		3B5BDCFC1C63133100592068 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -332,6 +340,7 @@
 				INFOPLIST_FILE = SwiftyTextTable/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = com.scotthoyt.SwiftyTextTable;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;

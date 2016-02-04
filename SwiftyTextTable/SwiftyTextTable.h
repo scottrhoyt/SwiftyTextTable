@@ -6,7 +6,7 @@
 //  Copyright © 2016 Scott Hoyt. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
+#import <Foundation/Foundation.h>
 
 //! Project version number for SwiftyTextTable.
 FOUNDATION_EXPORT double SwiftyTextTableVersionNumber;
