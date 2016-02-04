@@ -10,6 +10,10 @@ import XCTest
 import SwiftyTextTable
 
 class SwiftyTextTableTests: XCTestCase {
+    // protocol XCTestCaseProvider
+    lazy var allTests: [(String, () throws -> Void)] = [
+        ("testRender", self.testRender)
+    ]
 
     func testRender() {
         let foo = TextTableColumn(header: "foo")
