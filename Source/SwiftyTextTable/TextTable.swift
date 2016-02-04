@@ -26,11 +26,11 @@ private func fence(strings: [String], separator: String) -> String {
 public struct TextTableColumn {
     public var header: String
     private var values: [String] = []
-    
+
     public init(header: String) {
         self.header = header
     }
-    
+
     var width: Int {
         return max(header.characters.count, values.reduce(0) { max($0, $1.characters.count) })
     }
@@ -38,11 +38,11 @@ public struct TextTableColumn {
 
 public struct TextTable {
     private var columns: [TextTableColumn]
-    
+
     public init(columns: [TextTableColumn]) {
         self.columns = columns
     }
-    
+
     public mutating func addRow(values: CustomStringConvertible...) {
         let values = values.count >= columns.count ? values :
             values + [CustomStringConvertible](count: columns.count - values.count, repeatedValue: "")
@@ -52,7 +52,7 @@ public struct TextTable {
             return column
         }
     }
-    
+
     public func render() -> String {
         let separator = fence(columns.map({ column in
             Repeat(count: column.width + 2, repeatedValue: "-").joinWithSeparator("")

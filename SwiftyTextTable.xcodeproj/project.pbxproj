@@ -144,6 +144,7 @@
 			buildConfigurationList = 3B5BDCFD1C63133100592068 /* Build configuration list for PBXNativeTarget "SwiftyTextTableTests" */;
 			buildPhases = (
 				3B5BDCEC1C63133100592068 /* Sources */,
+				3B5BDD0B1C6320C800592068 /* SwiftLint */,
 				3B5BDCED1C63133100592068 /* Frameworks */,
 				3B5BDCEE1C63133100592068 /* Resources */,
 			);
@@ -209,6 +210,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3B5BDD0B1C6320C800592068 /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"SwiftLint does not exist, download from https://github.com/realm/SwiftLint\"\nfi";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		3B5BDCE11C63133100592068 /* Sources */ = {

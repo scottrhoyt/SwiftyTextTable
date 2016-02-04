@@ -10,7 +10,7 @@ import XCTest
 @testable import SwiftyTextTable
 
 class SwiftyTextTableTests: XCTestCase {
-    
+
     func testRender() {
         let foo = TextTableColumn(header: "foo")
         let bar = TextTableColumn(header: "bar")
