@@ -8,7 +8,7 @@
 
 import Foundation
 
-public extension String {
+private extension String {
     private func withPadding(count: Int) -> String {
         let length = characters.count
         if length < count {
