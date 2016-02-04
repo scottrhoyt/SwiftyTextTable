@@ -44,8 +44,11 @@ public struct TextTable {
     }
 
     public mutating func addRow(values: CustomStringConvertible...) {
-        let values = values.count >= columns.count ? values :
-            values + [CustomStringConvertible](count: columns.count - values.count, repeatedValue: "")
+        var values = values
+        if values.count < columns.count {
+            let blank: CustomStringConvertible = ""
+            values.appendContentsOf([CustomStringConvertible](count: columns.count - values.count, repeatedValue: blank))
+        }
         columns = zip(columns, values).map {
             (column, value) in
             var column = column
