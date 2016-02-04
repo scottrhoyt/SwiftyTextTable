@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3B5BDCEA1C63133100592068 /* SwiftyTextTable.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B5BDCE91C63133100592068 /* SwiftyTextTable.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3B5BDCF11C63133100592068 /* SwiftyTextTable.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B5BDCE61C63133100592068 /* SwiftyTextTable.framework */; };
 		3B5BDCF61C63133100592068 /* SwiftyTextTableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5BDCF51C63133100592068 /* SwiftyTextTableTests.swift */; };
 		3B5BDD021C63138500592068 /* TextTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5BDD011C63138500592068 /* TextTable.swift */; };
+		3B5BDD071C631E6200592068 /* SwiftyTextTable.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B5BDD051C631E6200592068 /* SwiftyTextTable.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -25,12 +25,12 @@
 
 /* Begin PBXFileReference section */
 		3B5BDCE61C63133100592068 /* SwiftyTextTable.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftyTextTable.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		3B5BDCE91C63133100592068 /* SwiftyTextTable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwiftyTextTable.h; sourceTree = "<group>"; };
-		3B5BDCEB1C63133100592068 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3B5BDCF01C63133100592068 /* SwiftyTextTableTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftyTextTableTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B5BDCF51C63133100592068 /* SwiftyTextTableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyTextTableTests.swift; sourceTree = "<group>"; };
-		3B5BDCF71C63133100592068 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3B5BDD011C63138500592068 /* TextTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextTable.swift; sourceTree = "<group>"; };
+		3B5BDD041C631E6200592068 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3B5BDD051C631E6200592068 /* SwiftyTextTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwiftyTextTable.h; sourceTree = "<group>"; };
+		3B5BDD091C631E6A00592068 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,20 +73,38 @@
 		3B5BDCE81C63133100592068 /* SwiftyTextTable */ = {
 			isa = PBXGroup;
 			children = (
-				3B5BDCE91C63133100592068 /* SwiftyTextTable.h */,
-				3B5BDCEB1C63133100592068 /* Info.plist */,
+				3B5BDD031C631E6200592068 /* Supporting Files */,
 				3B5BDD011C63138500592068 /* TextTable.swift */,
 			);
-			path = SwiftyTextTable;
+			name = SwiftyTextTable;
+			path = Source/SwiftyTextTable;
 			sourceTree = "<group>";
 		};
 		3B5BDCF41C63133100592068 /* SwiftyTextTableTests */ = {
 			isa = PBXGroup;
 			children = (
+				3B5BDD081C631E6A00592068 /* Supporting Files */,
 				3B5BDCF51C63133100592068 /* SwiftyTextTableTests.swift */,
-				3B5BDCF71C63133100592068 /* Info.plist */,
 			);
-			path = SwiftyTextTableTests;
+			name = SwiftyTextTableTests;
+			path = Source/SwiftyTextTableTests;
+			sourceTree = "<group>";
+		};
+		3B5BDD031C631E6200592068 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				3B5BDD041C631E6200592068 /* Info.plist */,
+				3B5BDD051C631E6200592068 /* SwiftyTextTable.h */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		3B5BDD081C631E6A00592068 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				3B5BDD091C631E6A00592068 /* Info.plist */,
+			);
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -96,7 +114,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3B5BDCEA1C63133100592068 /* SwiftyTextTable.h in Headers */,
+				3B5BDD071C631E6200592068 /* SwiftyTextTable.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -316,7 +334,7 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = SwiftyTextTable/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Source/SwiftyTextTable/Supporting Files/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
@@ -337,7 +355,7 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = SwiftyTextTable/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Source/SwiftyTextTable/Supporting Files/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
@@ -351,7 +369,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = SwiftyTextTableTests/Info.plist;
+				INFOPLIST_FILE = "Source/SwiftyTextTableTests/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.scotthoyt.SwiftyTextTableTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -362,7 +380,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = SwiftyTextTableTests/Info.plist;
+				INFOPLIST_FILE = "Source/SwiftyTextTableTests/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.scotthoyt.SwiftyTextTableTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
