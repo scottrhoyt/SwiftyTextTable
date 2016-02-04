@@ -11,26 +11,22 @@ import XCTest
 
 class SwiftyTextTableTests: XCTestCase {
     
-    override func setUp() {
-        super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    func testRender() {
+        let foo = TextTableColumn(header: "foo")
+        let bar = TextTableColumn(header: "bar")
+        let baz = TextTableColumn(header: "baz")
+        var table = TextTable(columns: [foo, bar, baz])
+        table.addRow(1, 2)
+        table.addRow(11, 22, 33)
+        table.addRow(111, 222, 333, 444)
+        let output = table.render()
+        let expected = "+-----+-----+-----+\n" +
+                       "| foo | bar | baz |\n" +
+                       "+-----+-----+-----+\n" +
+                       "| 1   | 2   |     |\n" +
+                       "| 11  | 22  | 33  |\n" +
+                       "| 111 | 222 | 333 |\n" +
+                       "+-----+-----+-----+"
+        XCTAssertEqual(output, expected)
     }
-    
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
-    }
-    
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-    
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measureBlock {
-            // Put the code you want to measure the time of here.
-        }
-    }
-    
 }
