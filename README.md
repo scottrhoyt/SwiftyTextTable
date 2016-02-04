@@ -106,3 +106,7 @@ print(tableString)
 +-----+-----+-----+
 */
 ```
+
+## License
+
+SwiftyTextTable is released under the [MIT License](https://github.com/scottrhoyt/SwiftyTextTable/blob/master/LICENSE).
