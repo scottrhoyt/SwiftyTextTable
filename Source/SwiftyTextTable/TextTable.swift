@@ -44,6 +44,9 @@ public struct TextTableColumn {
 
 public struct TextTable {
     private var columns: [TextTableColumn]
+    public var columnFence = "|"
+    public var rowFence = "-"
+    public var cornerFence = "+"
 
     public init(columns: [TextTableColumn]) {
         self.columns = columns
@@ -62,11 +65,11 @@ public struct TextTable {
 
     public func render() -> String {
         let separator = fence(columns.map({ column in
-            Repeat(count: column.width + 2, repeatedValue: "-").joinWithSeparator("")
-        }), separator: "+")
-        let header = fence(columns.map({ " \($0.header.withPadding($0.width)) " }), separator: "|")
+            Repeat(count: column.width + 2, repeatedValue: rowFence).joinWithSeparator("")
+        }), separator: cornerFence)
+        let header = fence(columns.map({ " \($0.header.withPadding($0.width)) " }), separator: columnFence)
         let values = (0..<columns.first!.values.count).map({ rowIndex in
-            fence(columns.map({ " \($0.values[rowIndex].withPadding($0.width)) " }), separator: "|")
+            fence(columns.map({ " \($0.values[rowIndex].withPadding($0.width)) " }), separator: columnFence)
         }).joinWithSeparator("\n")
         return [separator, header, separator, values, separator].joinWithSeparator("\n")
     }
