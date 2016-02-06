@@ -11,21 +11,19 @@ import SwiftyTextTable
 
 class SwiftyTextTableTests: XCTestCase {
 
-    var table: TextTable!
-
-    override func setUp() {
-        super.setUp()
+    func fooTable() -> TextTable {
         let foo = TextTableColumn(header: "foo")
         let bar = TextTableColumn(header: "bar")
         let baz = TextTableColumn(header: "baz")
-        table = TextTable(columns: [foo, bar, baz])
+        var table = TextTable(columns: [foo, bar, baz])
         table.addRow("1", "2")
         table.addRow(11, 22, 33)
         table.addRow(111, 222, 333, 444)
+        return table
     }
 
     func testRenderDefault() {
-        let output = table.render()
+        let output = fooTable().render()
         let expected = "+-----+-----+-----+\n" +
                        "| foo | bar | baz |\n" +
                        "+-----+-----+-----+\n" +
@@ -37,6 +35,7 @@ class SwiftyTextTableTests: XCTestCase {
     }
 
     func testRenderCustom() {
+        var table = fooTable()
         table.columnFence = "!"
         table.rowFence = "*"
         table.cornerFence = "."
