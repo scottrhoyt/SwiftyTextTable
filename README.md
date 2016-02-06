@@ -76,6 +76,28 @@ print(tableString)
 
 Any `CustomStringConvertible` can be used for row `values`.
 
+### Fence Custimization
+
+You can also customize the output of `TextTable.render()` by using different
+values for `columnFence`, `rowFence`, and `cornerFence`.
+
+```swift
+table.columnFence = ":"
+table.rowFence = "."
+table.cornerFence = "."
+
+print(table.render())
+
+/*
+...................
+: foo : bar : baz :
+...................
+: 1   : 2   :     :
+: 11  : 22  : 33  :
+...................
+*/
+```
+
 ### Row Padding/Truncation
 
 When adding rows, `TextTable` will automatically pad the rows with empty strings
