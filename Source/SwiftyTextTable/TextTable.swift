@@ -102,7 +102,7 @@ public struct TextTable {
             Repeat(count: column.width + 2, repeatedValue: rowFence).joinWithSeparator("")
         }), separator: cornerFence)
         let header = fence(columns.map({ " \($0.header.withPadding($0.width)) " }), separator: columnFence)
-        let values = (0..<columns.first!.values.count).map({ rowIndex in
+        let values = columns.isEmpty ? "" : (0..<columns.first!.values.count).map({ rowIndex in
             fence(columns.map({ " \($0.values[rowIndex].withPadding($0.width)) " }), separator: columnFence)
         }).joinWithSeparator("\n")
         return [separator, header, separator, values, separator].joinWithSeparator("\n")

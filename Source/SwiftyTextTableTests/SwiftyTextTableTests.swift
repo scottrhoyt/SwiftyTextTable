@@ -106,6 +106,14 @@ class SwiftyTextTableTests: XCTestCase {
         print(output)
         print(expected)
         XCTAssertEqual(output, expected)
+
+        let emptyOutput = TextTable(objects: [TableObject]()).render()
+        let emptyExpected = "++\n" +
+                            "||\n" +
+                            "++\n" +
+                              "\n" +
+                            "++"
+        XCTAssertEqual(emptyOutput, emptyExpected)
     }
 
     // MARK: - protocol XCTestCaseProvider for SPM
