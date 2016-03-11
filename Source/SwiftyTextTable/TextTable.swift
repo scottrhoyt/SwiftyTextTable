@@ -37,8 +37,26 @@ public struct TextTableColumn {
         self.header = header
     }
 
-    var width: Int {
-        return max(header.characters.count, values.reduce(0) { max($0, $1.characters.count) })
+    public var width: Int {
+        return max(strippedLength(header), values.reduce(0) { max($0, strippedLength($1)) })
+    }
+
+    // MARK: Console Escape Stripping
+    private static let strippingPattern = "(?:\u{001B}\\[(?:[0-9]|;)+m)*(.*?)(?:\u{001B}\\[0m)+"
+    // swiftlint:disable:next force_try
+    private static let strippingRegex = try! NSRegularExpression(pattern: strippingPattern, options: [])
+
+    private func stripped(string: String) -> String {
+        let matches = TextTableColumn.strippingRegex
+            .matchesInString(string, options: [], range: NSRange(location: 0, length: string.characters.count))
+            .map {
+                (string as NSString).substringWithRange($0.rangeAtIndex(1))
+            }
+        return matches.isEmpty ? string : matches.joinWithSeparator("")
+    }
+
+    private func strippedLength(string: String) -> Int {
+        return stripped(string).characters.count
     }
 }
 
