@@ -129,6 +129,65 @@ print(tableString)
 */
 ```
 
+### Creating Tables from Arrays of Objects with `TextTableObject`
+
+Let's say you have an array of objects that looks this:
+
+```swift
+enum AnimalType: String, CustomStringConvertible {
+    case Dog = "Dog"
+    case Cat = "Cat"
+    case Gorilla = "Gorilla"
+
+    var description: String {
+        return self.rawValue
+    }
+}
+
+struct Pet {
+    let type: AnimalType
+    let name: String
+    let canHazPizza: Bool
+}
+
+let furball = Pet(type: .Cat, name: "Furball", canHazPizza: false)
+let bestFriend = Pet(type: .Dog, name: "Best Friend", canHazPizza: true)
+let scary = Pet(type: .Gorilla, name: "Scary", canHazPizza: true)
+let pets = [furball, bestFriend, scary]
+```
+
+Now you want to print a table containing your `pets`. You can accomplish this
+by having `Pet` conform to `TextTableObject`:
+
+```swift
+extension Pet: TextTableObject {
+    static var tableHeaders: [String] {
+        return ["Name", "Animal", "Can Haz Pizza?"]
+    }
+
+    var tableValues: [CustomStringConvertible] {
+        return [name, type, canHazPizza ? "yes" : "no"]
+    }
+}
+```
+
+You can now print a table of your `pets` simply:
+
+```swift
+let table = TextTable(objects: pets)
+print(table.render())
+
+/*
++-------------+---------+----------------+
+| Name        | Animal  | Can Haz Pizza? |
++-------------+---------+----------------+
+| Furball     | Cat     | no             |
+| Best Friend | Dog     | yes            |
+| Scary       | Gorilla | yes            |
++-------------+---------+----------------+
+*/
+```
+
 ## License
 
 SwiftyTextTable is released under the [MIT License](https://github.com/scottrhoyt/SwiftyTextTable/blob/master/LICENSE).
