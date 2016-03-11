@@ -81,9 +81,7 @@ public struct TextTable {
 
     public init<T: TextTableObject>(objects: [T]) {
         columns = objects.isEmpty ? [] : objects[0].dynamicType.tableHeaders.map { TextTableColumn(header: $0) }
-        for object in objects {
-            addRow(object.tableValues)
-        }
+        objects.forEach { addRow($0.tableValues) }
     }
 
     public mutating func addRow(values: [CustomStringConvertible]) {
