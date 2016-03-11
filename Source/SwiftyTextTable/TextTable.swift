@@ -8,6 +8,13 @@
 
 import Foundation
 
+// MARK: Console Escape Stripping
+private let strippingPattern = "(?:\u{001B}\\[(?:[0-9]|;)+m)*(.*?)(?:\u{001B}\\[0m)+"
+
+// We can safely force try this regex because the pattern has be tested to work.
+// swiftlint:disable:next force_try
+private let strippingRegex = try! NSRegularExpression(pattern: strippingPattern, options: [])
+
 extension String: CustomStringConvertible {
     public var description: String {
         return self
@@ -23,6 +30,19 @@ private extension String {
         }
         return self
     }
+
+    func stripped() -> String {
+        let matches = strippingRegex
+            .matchesInString(self, options: [], range: NSRange(location: 0, length: self.characters.count))
+            .map {
+                (self as NSString).substringWithRange($0.rangeAtIndex(1))
+        }
+        return matches.isEmpty ? self : matches.joinWithSeparator("")
+    }
+
+    func strippedLength() -> Int {
+        return stripped().characters.count
+    }
 }
 
 private func fence(strings: [String], separator: String) -> String {
@@ -37,8 +57,8 @@ public struct TextTableColumn {
         self.header = header
     }
 
-    var width: Int {
-        return max(header.characters.count, values.reduce(0) { max($0, $1.characters.count) })
+    public var width: Int {
+        return max(header.strippedLength(), values.reduce(0) { max($0, $1.strippedLength()) })
     }
 }
 
