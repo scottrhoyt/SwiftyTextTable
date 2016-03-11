@@ -15,6 +15,13 @@ private let strippingPattern = "(?:\u{001B}\\[(?:[0-9]|;)+m)*(.*?)(?:\u{001B}\\[
 // swiftlint:disable:next force_try
 private let strippingRegex = try! NSRegularExpression(pattern: strippingPattern, options: [])
 
+// MARK: - TextTable Protocols
+
+public protocol TextTableObject {
+    static var tableHeaders: [String] { get }
+    var tableValues: [CustomStringConvertible] { get }
+}
+
 extension String: CustomStringConvertible {
     public var description: String {
         return self
@@ -72,7 +79,12 @@ public struct TextTable {
         self.columns = columns
     }
 
-    public mutating func addRow(values: CustomStringConvertible...) {
+    public init<T: TextTableObject>(objects: [T]) {
+        columns = objects.isEmpty ? [] : objects[0].dynamicType.tableHeaders.map { TextTableColumn(header: $0) }
+        objects.forEach { addRow($0.tableValues) }
+    }
+
+    public mutating func addRow(values: [CustomStringConvertible]) {
         let values = values.count >= columns.count ? values :
             values + [CustomStringConvertible](count: columns.count - values.count, repeatedValue: "")
         columns = zip(columns, values).map {
@@ -88,7 +100,7 @@ public struct TextTable {
             Repeat(count: column.width + 2, repeatedValue: rowFence).joinWithSeparator("")
         }), separator: cornerFence)
         let header = fence(columns.map({ " \($0.header.withPadding($0.width)) " }), separator: columnFence)
-        let values = (0..<columns.first!.values.count).map({ rowIndex in
+        let values = columns.isEmpty ? "" : (0..<columns.first!.values.count).map({ rowIndex in
             fence(columns.map({ " \($0.values[rowIndex].withPadding($0.width)) " }), separator: columnFence)
         }).joinWithSeparator("\n")
         return [separator, header, separator, values, separator].joinWithSeparator("\n")
