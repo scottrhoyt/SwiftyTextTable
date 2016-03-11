@@ -57,8 +57,8 @@ let baz = TextTableColumn(header: "baz")
 var table = TextTable(columns: [foo, bar, baz])
 
 // Then add some rows
-table.addRow(1, 2, 3)
-table.addRow(11, 22, 33)
+table.addRow([1, 2, 3])
+table.addRow([11, 22, 33])
 
 // Then render the table and use
 let tableString = table.render()
@@ -111,9 +111,9 @@ let baz = TextTableColumn(header: "baz")
 
 var table = TextTable(columns: [foo, bar, baz])
 
-table.addRow(1, 2)
-table.addRow(11, 22, 33)
-table.addRow(111, 222, 333, 444)
+table.addRow([1, 2])
+table.addRow([11, 22, 33])
+table.addRow([111, 222, 333, 444])
 
 let tableString = table.render()
 print(tableString)
