@@ -10,6 +10,8 @@ import Foundation
 
 // MARK: Console Escape Stripping
 private let strippingPattern = "(?:\u{001B}\\[(?:[0-9]|;)+m)*(.*?)(?:\u{001B}\\[0m)+"
+
+// We can safely force try this regex because the pattern has be tested to work.
 // swiftlint:disable:next force_try
 private let strippingRegex = try! NSRegularExpression(pattern: strippingPattern, options: [])
 
