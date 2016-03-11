@@ -15,6 +15,13 @@ private let strippingPattern = "(?:\u{001B}\\[(?:[0-9]|;)+m)*(.*?)(?:\u{001B}\\[
 // swiftlint:disable:next force_try
 private let strippingRegex = try! NSRegularExpression(pattern: strippingPattern, options: [])
 
+// MARK: - TextTable Protocols
+
+public protocol TextTableObject {
+    static var tableHeaders: [String] { get }
+    var tableValues: [CustomStringConvertible] { get }
+}
+
 extension String: CustomStringConvertible {
     public var description: String {
         return self
@@ -72,7 +79,14 @@ public struct TextTable {
         self.columns = columns
     }
 
-    public mutating func addRow(values: CustomStringConvertible...) {
+    public init<T: TextTableObject>(objects: [T]) {
+        columns = objects.isEmpty ? [] : objects[0].dynamicType.tableHeaders.map { TextTableColumn(header: $0) }
+        for object in objects {
+            addRow(object.tableValues)
+        }
+    }
+
+    public mutating func addRow(values: [CustomStringConvertible]) {
         let values = values.count >= columns.count ? values :
             values + [CustomStringConvertible](count: columns.count - values.count, repeatedValue: "")
         columns = zip(columns, values).map {

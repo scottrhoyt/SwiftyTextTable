@@ -16,9 +16,9 @@ class SwiftyTextTableTests: XCTestCase {
         let bar = TextTableColumn(header: "bar")
         let baz = TextTableColumn(header: "baz")
         var table = TextTable(columns: [foo, bar, baz])
-        table.addRow("1", "2")
-        table.addRow(11, 22, 33)
-        table.addRow(111, 222, 333, 444)
+        table.addRow(["1", "2"])
+        table.addRow([11, 22, 33])
+        table.addRow([111, 222, 333, 444])
         return table
     }
 
@@ -71,6 +71,41 @@ class SwiftyTextTableTests: XCTestCase {
 
         let c7 = TextTableColumn(header: "Hello World")
         XCTAssertEqual(c7.width, 11)
+    }
+
+    func testTableObjects() {
+        // swiftlint:disable:next nesting
+        struct TableObject: TextTableObject {
+            static var tableHeaders: [String] {
+                return [ "foo", "bar", "baz"]
+            }
+
+            let foo: Int
+            let bar: String
+            let baz: Double
+
+            var tableValues: [CustomStringConvertible] {
+                return [foo, bar, baz]
+            }
+        }
+
+        let objects = [
+            TableObject(foo: 1, bar: "2", baz: 3),
+            TableObject(foo: 11, bar: "22", baz: 33),
+            TableObject(foo: 111, bar: "222", baz: 333)
+        ]
+
+        let output = TextTable(objects: objects).render()
+        let expected = "+-----+-----+-------+\n" +
+                       "| foo | bar | baz   |\n" +
+                       "+-----+-----+-------+\n" +
+                       "| 1   | 2   | 3.0   |\n" +
+                       "| 11  | 22  | 33.0  |\n" +
+                       "| 111 | 222 | 333.0 |\n" +
+                       "+-----+-----+-------+"
+        print(output)
+        print(expected)
+        XCTAssertEqual(output, expected)
     }
 
     // MARK: - protocol XCTestCaseProvider for SPM
