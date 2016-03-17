@@ -87,7 +87,7 @@
 				3B5BDCF51C63133100592068 /* SwiftyTextTableTests.swift */,
 			);
 			name = SwiftyTextTableTests;
-			path = Source/SwiftyTextTableTests;
+			path = Tests/SwiftyTextTable;
 			sourceTree = "<group>";
 		};
 		3B5BDD031C631E6200592068 /* Supporting Files */ = {
@@ -387,7 +387,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = "Source/SwiftyTextTableTests/Supporting Files/Info.plist";
+				INFOPLIST_FILE = "Tests/SwiftyTextTable/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.scotthoyt.SwiftyTextTableTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -398,7 +398,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = "Source/SwiftyTextTableTests/Supporting Files/Info.plist";
+				INFOPLIST_FILE = "Tests/SwiftyTextTable/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.scotthoyt.SwiftyTextTableTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
