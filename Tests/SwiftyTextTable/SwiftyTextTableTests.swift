@@ -115,11 +115,4 @@ class SwiftyTextTableTests: XCTestCase {
                             "++"
         XCTAssertEqual(emptyOutput, emptyExpected)
     }
-
-    // MARK: - protocol XCTestCaseProvider for SPM
-    lazy var allTests: [(String, () throws -> Void)] = [
-        ("testRenderDefault", self.testRenderDefault),
-        ("testRenderCustom", self.testRenderCustom),
-        ("testStripping", self.testRenderCustom)
-    ]
 }
