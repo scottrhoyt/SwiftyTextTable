@@ -2,12 +2,27 @@
 
 ##### Breaking
 
+* None
+
+##### Enhancements
+
+* None
+
+##### Bug Fixes
+
+* None
+
+## 0.3.0: Table Objects Oh My!
+
+##### Breaking
+
 * `TextTable.addRow` now takes an array instead of an argument list. This was to
   support `TextTableObject`.
 
 ##### Enhancements
 
 * `TextTableObject` allows for easy table creation from an array of objects.
+* Better SPM testing support.
 
 ##### Bug Fixes
 
