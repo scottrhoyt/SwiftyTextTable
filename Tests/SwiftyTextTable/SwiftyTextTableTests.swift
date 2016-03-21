@@ -103,8 +103,7 @@ class SwiftyTextTableTests: XCTestCase {
                        "| 11  | 22  | 33.0  |\n" +
                        "| 111 | 222 | 333.0 |\n" +
                        "+-----+-----+-------+"
-        print(output)
-        print(expected)
+
         XCTAssertEqual(output, expected)
 
         let emptyOutput = TextTable(objects: [TableObject]()).render()
