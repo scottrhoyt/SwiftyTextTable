@@ -115,3 +115,16 @@ class SwiftyTextTableTests: XCTestCase {
         XCTAssertEqual(emptyOutput, emptyExpected)
     }
 }
+
+#if os(Linux)
+    extension SwiftyTextTableTests {
+        static var allTests: [(String, SwiftyTextTableTests -> () throws -> Void)] {
+            return [
+                ("testRenderDefault", testRenderDefault),
+                ("testRenderDefault", testRenderDefault),
+                ("testStripping", testStripping),
+                ("testTableObjects", testTableObjects),
+            ]
+        }
+    }
+#endif
