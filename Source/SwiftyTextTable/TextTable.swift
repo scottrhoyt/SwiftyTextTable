@@ -32,33 +32,19 @@ private extension String {
     private func withPadding(count: Int) -> String {
         let length = characters.count
         if length < count {
-            #if swift(>=3)
-                return self +
-                    repeatElement(" ", count: count - length).joined(separator: "")
-            #else
-                return self +
-                    Repeat(count: count - length, repeatedValue: " ").joinWithSeparator("")
-            #endif
+            return self +
+                repeatElement(" ", count: count - length).joined(separator: "")
         }
         return self
     }
 
     func stripped() -> String {
-        #if swift(>=3)
-            let matches = strippingRegex
-                .matches(in: self, options: [], range: NSRange(location: 0, length: self.characters.count))
-                .map {
-                    (self as NSString).substring(with: $0.range(at: 1))
-            }
-            return matches.isEmpty ? self : matches.joined(separator: "")
-        #else
-            let matches = strippingRegex
-                .matchesInString(self, options: [], range: NSRange(location: 0, length: self.characters.count))
-                .map {
-                    (self as NSString).substringWithRange($0.rangeAtIndex(1))
-            }
-            return matches.isEmpty ? self : matches.joinWithSeparator("")
-        #endif
+        let matches = strippingRegex
+            .matches(in: self, options: [], range: NSRange(location: 0, length: self.characters.count))
+            .map {
+                NSString(string: self).substring(with: $0.range(at: 1))
+        }
+        return matches.isEmpty ? self : matches.joined(separator: "")
     }
 
     func strippedLength() -> Int {
@@ -67,11 +53,7 @@ private extension String {
 }
 
 private func fence(strings: [String], separator: String) -> String {
-    #if swift(>=3)
-        return separator + strings.joined(separator: separator) + separator
-    #else
-        return separator + strings.joinWithSeparator(separator) + separator
-    #endif
+    return separator + strings.joined(separator: separator) + separator
 }
 
 public struct TextTableColumn {
@@ -103,13 +85,8 @@ public struct TextTable {
     }
 
     public mutating func addRow(values: [CustomStringConvertible]) {
-        #if swift(>=3)
-            let values = values.count >= columns.count ? values :
-                values + [CustomStringConvertible](repeating: "", count: columns.count - values.count)
-        #else
-            let values = values.count >= columns.count ? values :
-                values + [CustomStringConvertible](count: columns.count - values.count, repeatedValue: "")
-        #endif
+        let values = values.count >= columns.count ? values :
+            values + [CustomStringConvertible](repeating: "", count: columns.count - values.count)
         columns = zip(columns, values).map {
             (column, value) in
             var column = column
@@ -120,23 +97,50 @@ public struct TextTable {
 
     public func render() -> String {
         let separator = fence(columns.map({ column in
-            #if swift(>=3)
-                return repeatElement(rowFence, count: column.width + 2).joined(separator: "")
-            #else
-                return Repeat(count: column.width + 2, repeatedValue: rowFence).joinWithSeparator("")
-            #endif
+            return repeatElement(rowFence, count: column.width + 2).joined(separator: "")
         }), separator: cornerFence)
         let header = fence(columns.map({ " \($0.header.withPadding($0.width)) " }), separator: columnFence)
-        #if swift(>=3)
-            let values = columns.isEmpty ? "" : (0..<columns.first!.values.count).map({ rowIndex in
-                fence(columns.map({ " \($0.values[rowIndex].withPadding($0.width)) " }), separator: columnFence)
-            }).joined(separator: "\n")
-            return [separator, header, separator, values, separator].joined(separator: "\n")
-        #else
-            let values = columns.isEmpty ? "" : (0..<columns.first!.values.count).map({ rowIndex in
-                fence(columns.map({ " \($0.values[rowIndex].withPadding($0.width)) " }), separator: columnFence)
-            }).joinWithSeparator("\n")
-            return [separator, header, separator, values, separator].joinWithSeparator("\n")
-        #endif
+        let values = columns.isEmpty ? "" : (0..<columns.first!.values.count).map({ rowIndex in
+            fence(columns.map({ " \($0.values[rowIndex].withPadding($0.width)) " }), separator: columnFence)
+        }).joined(separator: "\n")
+        return [separator, header, separator, values, separator].joined(separator: "\n")
     }
 }
+
+#if !swift(>=3)
+    internal func repeatElement<T>(element: T, count: Int) -> Repeat<T> {
+        return Repeat(count: count, repeatedValue: element)
+    }
+
+    extension SequenceType where Generator.Element == String {
+        internal func joined(separator separator: String) -> String {
+            return joinWithSeparator(separator)
+        }
+    }
+
+    extension Array {
+        internal init(repeating repeatedValue: Element, count: Int) {
+            self.init(count: count, repeatedValue: repeatedValue)
+        }
+    }
+#endif
+
+#if !swift(>=3) || os(Linux)
+    extension NSString {
+        internal func substring(with range: NSRange) -> String {
+            return substringWithRange(range)
+        }
+    }
+
+    extension NSRegularExpression {
+        internal func matches(in string: String, options: NSMatchingOptions = [], range: NSRange) -> [NSTextCheckingResult] {
+            return matchesInString(string, options: options, range: range)
+        }
+    }
+
+    extension NSTextCheckingResult {
+        internal func range(at idx: Int) -> NSRange {
+            return rangeAtIndex(idx)
+        }
+    }
+#endif
