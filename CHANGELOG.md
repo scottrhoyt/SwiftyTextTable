@@ -6,7 +6,8 @@
 
 ##### Enhancements
 
-* None
+* SwiftyTextTable is now compatible with both Swift 2.2 and Swift 3.0 on OS X
+  and Linux thanks to the great work of [Norio Nomura](https://github.com/norio-nomura).
 
 ##### Bug Fixes
 
