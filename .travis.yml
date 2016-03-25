@@ -1,22 +1,30 @@
 language: objective-c
-osx_image: xcode7.2
+osx_image: xcode7.3
 env:
   global:
     - FRAMEWORK_NAME=SwiftyTextTable
 
-before_install:
-  - ./scripts/upstall-carthage.sh
-  - ./scripts/upstall-swiftlint.sh
-
-script:
-  - set -o pipefail && xcodebuild -scheme SwiftyTextTable -project SwiftyTextTable.xcodeproj clean build test | xcpretty
-
-after_success:
-  - bash <(curl -s https://codecov.io/bash)
-
-before_deploy:
-  - carthage build --no-skip-current
-  - carthage archive $FRAMEWORK_NAME
+script: placeholder # workaround for https://github.com/travis-ci/travis-ci/issues/4681
+matrix:
+  include:
+    - script: set -o pipefail && xcodebuild -scheme SwiftyTextTable -project SwiftyTextTable.xcodeproj clean build test | xcpretty
+      env: JOB=Xcode
+      before_install:
+        - ./scripts/upstall-carthage.sh
+        - ./scripts/upstall-swiftlint.sh
+      after_success:
+        - bash <(curl -s https://codecov.io/bash)
+      before_deploy:
+        - carthage build --no-skip-current
+        - carthage archive $FRAMEWORK_NAME
+    - script: TOOLCHAINS=swift swift build && TOOLCHAINS=swift swift test
+      env: JOB=SPM
+      before_install:
+        - export SWIFT_SNAPSHOT=swift-DEVELOPMENT-SNAPSHOT-2016-03-24-a
+        - curl https://swift.org/builds/development/xcode/$SWIFT_SNAPSHOT/$SWIFT_SNAPSHOT-osx.pkg -o swift.pkg
+        - sudo installer -pkg swift.pkg -target /
+  exclude:
+    - script: placeholder # workaround for https://github.com/travis-ci/travis-ci/issues/4681
 
 deploy:
   provider: releases
@@ -27,3 +35,4 @@ deploy:
   on:
     repo: scottrhoyt/SwiftyTextTable
     tags: true
+    condition: $JOB = Xcode
