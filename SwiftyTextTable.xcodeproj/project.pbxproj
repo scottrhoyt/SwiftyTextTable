@@ -170,6 +170,7 @@
 				TargetAttributes = {
 					3B5BDCE51C63133100592068 = {
 						CreatedOnToolsVersion = 7.1.1;
+						LastSwiftMigration = 0800;
 					};
 					3B5BDCEF1C63133100592068 = {
 						CreatedOnToolsVersion = 7.1.1;
@@ -298,6 +299,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 2.3;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -337,6 +339,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
+				SWIFT_VERSION = 2.3;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -424,6 +427,7 @@
 				3B5BDCFC1C63133100592068 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3B5BDCFD1C63133100592068 /* Build configuration list for PBXNativeTarget "SwiftyTextTableTests" */ = {
 			isa = XCConfigurationList;
@@ -432,6 +436,7 @@
 				3B5BDCFF1C63133100592068 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
