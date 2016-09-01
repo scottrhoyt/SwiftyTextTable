@@ -18,6 +18,13 @@ matrix:
       before_deploy:
         - carthage build --no-skip-current
         - carthage archive $FRAMEWORK_NAME
+    - script: set -o pipefail && xcodebuild -scheme SwiftyTextTable -project SwiftyTextTable.xcodeproj clean build test | xcpretty
+      env: JOB=Xcode8
+      os: osx
+      osx_image: xcode8
+      language: objective-c
+      after_success:
+        - bash <(curl -s https://codecov.io/bash)
     - script:
         - TOOLCHAINS=swift swift build
         - TOOLCHAINS=swift swift test
