@@ -8,6 +8,24 @@
 
 import Foundation
 
+// MARK: Linux Compatibility
+#if os(Linux)
+   typealias NSRegularExpression = RegularExpression
+   typealias NSTextCheckingResult = TextCheckingResult
+
+    extension NSString {
+        internal func substring(with range: NSRange) -> String {
+            return self.substring(with: range)
+        }
+    }
+
+    extension NSTextCheckingResult {
+        internal func rangeAt(_ idx: Int) -> NSRange {
+            return range(at: idx)
+        }
+    }
+#endif
+
 // MARK: Console Escape Stripping
 private let strippingPattern = "(?:\u{001B}\\[(?:[0-9]|;)+m)*(.*?)(?:\u{001B}\\[0m)+"
 
@@ -100,24 +118,3 @@ public struct TextTable {
         return [separator, header, separator, values, separator].joined(separator: "\n")
     }
 }
-
-#if os(Linux)
-    extension NSString {
-        internal func substring(with range: NSRange) -> String {
-            return self.substring(with: range)
-        }
-    }
-
-    extension NSRegularExpression {
-        // swiftlint:disable:next line_length
-        internal func matches(in string: String, options: NSRegularExpression.MatchingOptions = [], range: NSRange) -> [NSTextCheckingResult] {
-            return self.matches(in: string, options: options, range: range)
-        }
-    }
-
-    extension NSTextCheckingResult {
-        internal func range(at idx: Int) -> NSRange {
-            return rangeAt(idx)
-        }
-    }
-#endif

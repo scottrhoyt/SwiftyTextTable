@@ -118,7 +118,7 @@ class SwiftyTextTableTests: XCTestCase {
 
 #if os(Linux)
     extension SwiftyTextTableTests {
-        static var allTests: [(String, SwiftyTextTableTests -> () throws -> Void)] {
+        static var allTests: [(String, (SwiftyTextTableTests) -> () throws -> Void)] {
             return [
                 ("testRenderDefault", testRenderDefault),
                 ("testRenderCustom", testRenderCustom),

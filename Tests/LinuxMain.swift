@@ -1,6 +1,6 @@
 import XCTest
 
-@testable import SwiftyTextTableTestSuite
+@testable import SwiftyTextTableTests
 
 XCTMain([
   testCase(SwiftyTextTableTests.allTests),
