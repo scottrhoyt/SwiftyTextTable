@@ -23,7 +23,7 @@ public protocol TextTableObject {
 }
 
 private extension String {
-    func withPadding(_ count: Int) -> String {
+    func withPadding(count: Int) -> String {
         let length = characters.count
         if length < count {
             return self +
@@ -46,7 +46,7 @@ private extension String {
     }
 }
 
-private func fence(_ strings: [String], separator: String) -> String {
+private func fence(strings: [String], separator: String) -> String {
     return separator + strings.joined(separator: separator) + separator
 }
 
@@ -64,7 +64,7 @@ public struct TextTableColumn {
 }
 
 public struct TextTable {
-    fileprivate var columns: [TextTableColumn]
+    private var columns: [TextTableColumn]
     public var columnFence = "|"
     public var rowFence = "-"
     public var cornerFence = "+"
@@ -75,10 +75,10 @@ public struct TextTable {
 
     public init<T: TextTableObject>(objects: [T]) {
         columns = objects.isEmpty ? [] : type(of: objects[0]).tableHeaders.map { TextTableColumn(header: $0) }
-        objects.forEach { addRow($0.tableValues) }
+        objects.forEach { addRow(values: $0.tableValues) }
     }
 
-    public mutating func addRow(_ values: [CustomStringConvertible]) {
+    public mutating func addRow(values: [CustomStringConvertible]) {
         let values = values.count >= columns.count ? values :
             values + [CustomStringConvertible](repeating: "", count: columns.count - values.count)
         columns = zip(columns, values).map {
@@ -90,12 +90,12 @@ public struct TextTable {
     }
 
     public func render() -> String {
-        let separator = fence(columns.map({ column in
+        let separator = fence(strings: columns.map({ column in
             return repeatElement(rowFence, count: column.width + 2).joined(separator: "")
         }), separator: cornerFence)
-        let header = fence(columns.map({ " \($0.header.withPadding($0.width)) " }), separator: columnFence)
+        let header = fence(strings: columns.map({ " \($0.header.withPadding(count: $0.width)) " }), separator: columnFence)
         let values = columns.isEmpty ? "" : (0..<columns.first!.values.count).map({ rowIndex in
-            fence(columns.map({ " \($0.values[rowIndex].withPadding($0.width)) " }), separator: columnFence)
+            fence(strings: columns.map({ " \($0.values[rowIndex].withPadding(count: $0.width)) " }), separator: columnFence)
         }).joined(separator: "\n")
         return [separator, header, separator, values, separator].joined(separator: "\n")
     }

@@ -16,9 +16,9 @@ class SwiftyTextTableTests: XCTestCase {
         let bar = TextTableColumn(header: "bar")
         let baz = TextTableColumn(header: "baz")
         var table = TextTable(columns: [foo, bar, baz])
-        table.addRow(["1", "2"])
-        table.addRow([11, 22, 33])
-        table.addRow([111, 222, 333, 444])
+        table.addRow(values: ["1", "2"])
+        table.addRow(values: [11, 22, 33])
+        table.addRow(values: [111, 222, 333, 444])
         return table
     }
 
