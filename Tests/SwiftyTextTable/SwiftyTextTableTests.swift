@@ -121,7 +121,7 @@ class SwiftyTextTableTests: XCTestCase {
         static var allTests: [(String, SwiftyTextTableTests -> () throws -> Void)] {
             return [
                 ("testRenderDefault", testRenderDefault),
-                ("testRenderDefault", testRenderDefault),
+                ("testRenderCustom", testRenderCustom),
                 ("testStripping", testStripping),
                 ("testTableObjects", testTableObjects),
             ]
