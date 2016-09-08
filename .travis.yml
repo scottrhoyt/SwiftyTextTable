@@ -8,7 +8,7 @@ matrix:
     - script: set -o pipefail && xcodebuild -scheme SwiftyTextTable -project SwiftyTextTable.xcodeproj clean build test | xcpretty
       env: JOB=Xcode
       os: osx
-      osx_image: xcode7.3
+      osx_image: xcode8
       language: objective-c
       before_install:
         - ./scripts/upstall-carthage.sh
@@ -18,22 +18,15 @@ matrix:
       before_deploy:
         - carthage build --no-skip-current
         - carthage archive $FRAMEWORK_NAME
-    - script: set -o pipefail && xcodebuild -scheme SwiftyTextTable -project SwiftyTextTable.xcodeproj clean build test | xcpretty
-      env: JOB=Xcode8
-      os: osx
-      osx_image: xcode8
-      language: objective-c
-      after_success:
-        - bash <(curl -s https://codecov.io/bash)
     - script:
         - TOOLCHAINS=swift swift build
         - TOOLCHAINS=swift swift test
       env: JOB=SPM
       os: osx
-      osx_image: xcode7.3
+      osx_image: xcode8
       language: objective-c
       before_install:
-        - export SWIFT_SNAPSHOT=swift-DEVELOPMENT-SNAPSHOT-2016-03-24-a
+        - export SWIFT_SNAPSHOT=swift-DEVELOPMENT-SNAPSHOT-2016-09-07-a
         - curl https://swift.org/builds/development/xcode/$SWIFT_SNAPSHOT/$SWIFT_SNAPSHOT-osx.pkg -o swift.pkg
         - sudo installer -pkg swift.pkg -target /
     - script:
@@ -47,7 +40,7 @@ matrix:
         - wget -q -O - https://swift.org/keys/all-keys.asc | gpg --import -
         - cd ..
         - gpg --keyserver hkp://pool.sks-keyservers.net --refresh-keys Swift
-        - export SWIFT_SNAPSHOT=swift-DEVELOPMENT-SNAPSHOT-2016-03-24-a
+        - export SWIFT_SNAPSHOT=swift-DEVELOPMENT-SNAPSHOT-2016-09-07-a
         - export SWIFT_URL=https://swift.org/builds/development/ubuntu1404/$SWIFT_SNAPSHOT/$SWIFT_SNAPSHOT-ubuntu14.04.tar.gz
         - wget $SWIFT_URL
         - wget $SWIFT_URL.sig
