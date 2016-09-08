@@ -22,12 +22,6 @@ public protocol TextTableObject {
     var tableValues: [CustomStringConvertible] { get }
 }
 
-//extension String: CustomStringConvertible {
-//    public var description: String {
-//        return self
-//    }
-//}
-
 private extension String {
     func withPadding(_ count: Int) -> String {
         let length = characters.count
