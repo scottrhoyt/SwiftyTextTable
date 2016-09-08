@@ -101,25 +101,7 @@ public struct TextTable {
     }
 }
 
-#if !swift(>=3)
-    internal func repeatElement<T>(_ element: T, count: Int) -> Repeated<T> {
-        return Repeated(count: count, repeatedValue: element)
-    }
-
-    extension Sequence where Iterator.Element == String {
-        internal func joined(separator: String) -> String {
-            return self.joined(separator: separator)
-        }
-    }
-
-    extension Array {
-        internal init(repeating repeatedValue: Element, count: Int) {
-            self.init(repeating: repeatedValue, count: count)
-        }
-    }
-#endif
-
-#if !swift(>=3) || os(Linux)
+#if os(Linux)
     extension NSString {
         internal func substring(with range: NSRange) -> String {
             return self.substring(with: range)
