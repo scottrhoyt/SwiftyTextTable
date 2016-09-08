@@ -22,14 +22,14 @@ public protocol TextTableObject {
     var tableValues: [CustomStringConvertible] { get }
 }
 
-extension String: CustomStringConvertible {
-    public var description: String {
-        return self
-    }
-}
+//extension String: CustomStringConvertible {
+//    public var description: String {
+//        return self
+//    }
+//}
 
 private extension String {
-    private func withPadding(count: Int) -> String {
+    func withPadding(_ count: Int) -> String {
         let length = characters.count
         if length < count {
             return self +
@@ -42,7 +42,7 @@ private extension String {
         let matches = strippingRegex
             .matches(in: self, options: [], range: NSRange(location: 0, length: self.characters.count))
             .map {
-                NSString(string: self).substring(with: $0.range(at: 1))
+                NSString(string: self).substring(with: $0.rangeAt(1))
         }
         return matches.isEmpty ? self : matches.joined(separator: "")
     }
@@ -52,13 +52,13 @@ private extension String {
     }
 }
 
-private func fence(strings: [String], separator: String) -> String {
+private func fence(_ strings: [String], separator: String) -> String {
     return separator + strings.joined(separator: separator) + separator
 }
 
 public struct TextTableColumn {
     public var header: String
-    private var values: [String] = []
+    fileprivate var values: [String] = []
 
     public init(header: String) {
         self.header = header
@@ -70,7 +70,7 @@ public struct TextTableColumn {
 }
 
 public struct TextTable {
-    private var columns: [TextTableColumn]
+    fileprivate var columns: [TextTableColumn]
     public var columnFence = "|"
     public var rowFence = "-"
     public var cornerFence = "+"
@@ -80,11 +80,11 @@ public struct TextTable {
     }
 
     public init<T: TextTableObject>(objects: [T]) {
-        columns = objects.isEmpty ? [] : objects[0].dynamicType.tableHeaders.map { TextTableColumn(header: $0) }
+        columns = objects.isEmpty ? [] : type(of: objects[0]).tableHeaders.map { TextTableColumn(header: $0) }
         objects.forEach { addRow($0.tableValues) }
     }
 
-    public mutating func addRow(values: [CustomStringConvertible]) {
+    public mutating func addRow(_ values: [CustomStringConvertible]) {
         let values = values.count >= columns.count ? values :
             values + [CustomStringConvertible](repeating: "", count: columns.count - values.count)
         columns = zip(columns, values).map {
@@ -108,19 +108,19 @@ public struct TextTable {
 }
 
 #if !swift(>=3)
-    internal func repeatElement<T>(element: T, count: Int) -> Repeat<T> {
-        return Repeat(count: count, repeatedValue: element)
+    internal func repeatElement<T>(_ element: T, count: Int) -> Repeated<T> {
+        return Repeated(count: count, repeatedValue: element)
     }
 
-    extension SequenceType where Generator.Element == String {
-        internal func joined(separator separator: String) -> String {
-            return joinWithSeparator(separator)
+    extension Sequence where Iterator.Element == String {
+        internal func joined(separator: String) -> String {
+            return self.joined(separator: separator)
         }
     }
 
     extension Array {
         internal init(repeating repeatedValue: Element, count: Int) {
-            self.init(count: count, repeatedValue: repeatedValue)
+            self.init(repeating: repeatedValue, count: count)
         }
     }
 #endif
@@ -128,19 +128,20 @@ public struct TextTable {
 #if !swift(>=3) || os(Linux)
     extension NSString {
         internal func substring(with range: NSRange) -> String {
-            return substringWithRange(range)
+            return self.substring(with: range)
         }
     }
 
     extension NSRegularExpression {
-        internal func matches(in string: String, options: NSMatchingOptions = [], range: NSRange) -> [NSTextCheckingResult] {
-            return matchesInString(string, options: options, range: range)
+        // swiftlint:disable:next line_length
+        internal func matches(in string: String, options: NSRegularExpression.MatchingOptions = [], range: NSRange) -> [NSTextCheckingResult] {
+            return self.matches(in: string, options: options, range: range)
         }
     }
 
     extension NSTextCheckingResult {
         internal func range(at idx: Int) -> NSRange {
-            return rangeAtIndex(idx)
+            return rangeAt(idx)
         }
     }
 #endif
