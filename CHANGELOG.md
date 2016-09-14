@@ -2,12 +2,29 @@
 
 ##### Breaking
 
+* `SwiftyTextTable` adopts the new Swift 3.0 convention of explicit first
+  parameter labels for functions.
+* Linux support for dealing with console formatting escape sequences has been
+  removed for the time being due to regular expression portability problems.
+
+##### Enhancements
+
+* Swift 3.0 support!
+
+##### Bug Fixes
+
+* None
+
+## 0.3.1: Swift 2.3 Support
+
+##### Breaking
+
 * None
 
 ##### Enhancements
 
-* SwiftyTextTable is now compatible with both Swift 2.2 and Swift 3.0 on OS X
-  and Linux thanks to the great work of [Norio Nomura](https://github.com/norio-nomura).
+* SwiftyTextTable is now compatible with Swift 2.3 on OS X and Linux thanks to
+  the great work of [Norio Nomura](https://github.com/norio-nomura).
 
 ##### Bug Fixes
 
