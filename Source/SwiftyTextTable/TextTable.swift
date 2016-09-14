@@ -43,7 +43,7 @@ private extension String {
         let length = characters.count
         if length < count {
             return self +
-                repeatElement(" ", count: count - length).joined(separator: "")
+                repeatElement(" ", count: count - length).joined()
         }
         return self
     }
