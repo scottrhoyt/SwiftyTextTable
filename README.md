@@ -79,6 +79,21 @@ print(tableString)
 | 11  | 22  | 33  |
 +-----+-----+-----+
 */
+
+// Put a header on the table if you'd like
+table.header = "my foo table"
+print(table.render())
+
+/*
++-----------------+
+| my foo table    |
++-----------------+
+| foo | bar | baz |
++-----+-----+-----+
+| 1   | 2   | 3   |
+| 11  | 22  | 33  |
++-----+-----+-----+
+*/
 ```
 
 Any `CustomStringConvertible` can be used for row `values`.
@@ -136,7 +151,7 @@ print(tableString)
 */
 ```
 
-#### Console Formatting Support
+### Console Formatting Support
 *Not currently available in Linux.*
 
 `SwiftyTextTable` will recognize many console escape sequences used to format
@@ -175,12 +190,17 @@ by having `Pet` conform to `TextTableObject`:
 
 ```swift
 extension Pet: TextTableObject {
-    static var tableHeaders: [String] {
+    static var columnHeaders: [String] {
         return ["Name", "Animal", "Can Haz Pizza?"]
     }
 
     var tableValues: [CustomStringConvertible] {
         return [name, type, canHazPizza ? "yes" : "no"]
+    }
+
+    // Optional
+    static var tableHeader: String? {
+      return "My Pets"
     }
 }
 ```
@@ -192,7 +212,9 @@ let table = TextTable(objects: pets)
 print(table.render())
 
 /*
-+-------------+---------+----------------+
++----------------------------------------+
+| My Pets                                |
++----------------------------------------+
 | Name        | Animal  | Can Haz Pizza? |
 +-------------+---------+----------------+
 | Furball     | Cat     | no             |
