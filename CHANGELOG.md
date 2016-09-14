@@ -2,6 +2,20 @@
 
 ##### Breaking
 
+* None
+
+##### Enhancements
+
+* None
+
+##### Bug Fixes
+
+* None
+
+## 0.5.0: Heading In The Right Direction
+
+##### Breaking
+
 * `TableObject.tableHeaders` was rename `TableObject.columnHeaders` for clarity.
 
 ##### Enhancements
