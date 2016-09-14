@@ -2,6 +2,20 @@
 
 ##### Breaking
 
+* None
+
+##### Enhancements
+
+* None
+
+##### Bug Fixes
+
+* None
+
+## 0.4.0: Swift 3.0 Support
+
+##### Breaking
+
 * `SwiftyTextTable` adopts the new Swift 3.0 convention of explicit first
   parameter labels for functions.
 * Linux support for dealing with console formatting escape sequences has been
