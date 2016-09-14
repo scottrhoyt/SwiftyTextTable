@@ -7,20 +7,12 @@ A lightweight Swift library for generating text tables.
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![Swift Package Manager compatible](https://img.shields.io/badge/Swift%20Package%20Manager-compatible-brightgreen.svg)](https://github.com/apple/swift-package-manager)
 ![Platform OS X + Linux](https://img.shields.io/badge/Platform-OS%20X%20%2B%20Linux-blue.svg)
-[![Language Swift 2.3](https://img.shields.io/badge/Language-Swift%202.3-orange.svg)](https://swift.org)
+[![Language Swift 3.0](https://img.shields.io/badge/Language-Swift%203.0-orange.svg)](https://swift.org)
 
-## Swift 3.0
+## Swift Language Support
 
-Currently Swift 3.0 support is a work in progress. The library is stable under
-OS X using Xcode 8 or SPM, but not Linux. To access Swift 3.0 support use the
-branch `swift3`.
-
-The Swift 3.0 implementation is not backwards compatible with Swift < 3.0 and
-introduces breaking changes due to explicit first parameter labels for
-functions.
-
-SwiftyTextTable 0.4.0 will introduce Swift 3.0 support. To prevent problems in
-codebases not yet updated to Swift 3.0, pin your version to `0.3.1`.
+`SwiftyTextTable` is now Swift 3.0 compatible! The last release to support Swift
+2.3 was [0.3.1](https://github.com/scottrhoyt/SwiftyTextTable/releases/tag/0.3.1).
 
 ## Installation
 
@@ -141,6 +133,13 @@ print(tableString)
 +-----+-----+-----+
 */
 ```
+
+#### Console Formatting Support
+*Not currently available in Linux.*
+
+`SwiftyTextTable` will recognize many console escape sequences used to format
+output (e.g. [Rainbow](https://github.com/onevcat/Rainbow)) and account for them
+in constructing the table.
 
 ### Creating Tables from Arrays of Objects with `TextTableObject`
 
