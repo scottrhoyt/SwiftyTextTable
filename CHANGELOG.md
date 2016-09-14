@@ -2,11 +2,12 @@
 
 ##### Breaking
 
-* None
+* `TableObject.tableHeaders` was rename `TableObject.columnHeaders` for clarity.
 
 ##### Enhancements
 
-* None
+* `TextTable`s can now optionally have table headers.
+* `TableObject`s can now optionally supply a table header
 
 ##### Bug Fixes
 
