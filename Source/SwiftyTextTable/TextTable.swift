@@ -8,37 +8,33 @@
 
 import Foundation
 
-// MARK: Linux Compatibility
+// MARK: Console Escape Stripping
+// Because of an error using the Linux implementation of Foundation's RegularExpression,
+// escape stripping is only available on Apple platforms
 #if os(Linux)
-   typealias NSRegularExpression = RegularExpression
-   typealias NSTextCheckingResult = TextCheckingResult
-
-    extension NSString {
-        internal func substring(with range: NSRange) -> String {
-            return self.substring(with: range)
+    private extension String {
+        func stripped() -> String {
+            return self
         }
     }
+#else
+    private let strippingPattern = "(?:\u{001B}\\[(?:[0-9]|;)+m)*(.*?)(?:\u{001B}\\[0m)+"
 
-    extension NSTextCheckingResult {
-        internal func rangeAt(_ idx: Int) -> NSRange {
-            return range(at: idx)
+    // We can safely force try this regex because the pattern has be tested to work.
+    // swiftlint:disable:next force_try
+    private let strippingRegex = try! NSRegularExpression(pattern: strippingPattern, options: [])
+
+    private extension String {
+        func stripped() -> String {
+            let matches = strippingRegex
+                .matches(in: self, options: [], range: NSRange(location: 0, length: self.characters.count))
+                .map {
+                    NSString(string: self).substring(with: $0.rangeAt(1))
+            }
+            return matches.isEmpty ? self : matches.joined(separator: "")
         }
     }
 #endif
-
-// MARK: Console Escape Stripping
-private let strippingPattern = "(?:\u{001B}\\[(?:[0-9]|;)+m)*(.*?)(?:\u{001B}\\[0m)+"
-
-// We can safely force try this regex because the pattern has be tested to work.
-// swiftlint:disable:next force_try
-private let strippingRegex = try! NSRegularExpression(pattern: strippingPattern, options: [])
-
-// MARK: - TextTable Protocols
-
-public protocol TextTableObject {
-    static var tableHeaders: [String] { get }
-    var tableValues: [CustomStringConvertible] { get }
-}
 
 private extension String {
     func withPadding(count: Int) -> String {
@@ -50,18 +46,16 @@ private extension String {
         return self
     }
 
-    func stripped() -> String {
-        let matches = strippingRegex
-            .matches(in: self, options: [], range: NSRange(location: 0, length: self.characters.count))
-            .map {
-                NSString(string: self).substring(with: $0.rangeAt(1))
-        }
-        return matches.isEmpty ? self : matches.joined(separator: "")
-    }
-
     func strippedLength() -> Int {
         return stripped().characters.count
     }
+}
+
+// MARK: - TextTable Protocols
+
+public protocol TextTableObject {
+    static var tableHeaders: [String] { get }
+    var tableValues: [CustomStringConvertible] { get }
 }
 
 private func fence(strings: [String], separator: String) -> String {
