@@ -34,6 +34,22 @@ class SwiftyTextTableTests: XCTestCase {
         XCTAssertEqual(output, expected)
     }
 
+    func testRenderDefaultWithHeader() {
+        var table = fooTable()
+        table.header = "foo table"
+        let output = table.render()
+        let expected = "+-----------------+\n" +
+                       "| foo table       |\n" +
+                       "+-----------------+\n" +
+                       "| foo | bar | baz |\n" +
+                       "+-----+-----+-----+\n" +
+                       "| 1   | 2   |     |\n" +
+                       "| 11  | 22  | 33  |\n" +
+                       "| 111 | 222 | 333 |\n" +
+                       "+-----+-----+-----+"
+        XCTAssertEqual(output, expected)
+    }
+
     func testRenderCustom() {
         var table = fooTable()
         table.columnFence = "!"
@@ -41,6 +57,25 @@ class SwiftyTextTableTests: XCTestCase {
         table.cornerFence = "."
         let output = table.render()
         let expected = ".*****.*****.*****.\n" +
+                       "! foo ! bar ! baz !\n" +
+                       ".*****.*****.*****.\n" +
+                       "! 1   ! 2   !     !\n" +
+                       "! 11  ! 22  ! 33  !\n" +
+                       "! 111 ! 222 ! 333 !\n" +
+                       ".*****.*****.*****."
+        XCTAssertEqual(output, expected)
+    }
+
+    func testRenderCustomWithHeader() {
+        var table = fooTable()
+        table.columnFence = "!"
+        table.rowFence = "*"
+        table.cornerFence = "."
+        table.header = "foo table"
+        let output = table.render()
+        let expected = ".*****************.\n" +
+                       "! foo table       !\n" +
+                       ".*****************.\n" +
                        "! foo ! bar ! baz !\n" +
                        ".*****.*****.*****.\n" +
                        "! 1   ! 2   !     !\n" +

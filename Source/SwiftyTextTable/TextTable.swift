@@ -36,6 +36,8 @@ import Foundation
     }
 #endif
 
+// MARK: Helper Extensions
+
 private extension String {
     func withPadding(count: Int) -> String {
         let length = characters.count
@@ -48,6 +50,12 @@ private extension String {
 
     func strippedLength() -> Int {
         return stripped().characters.count
+    }
+}
+
+private extension Array where Element: CustomStringConvertible {
+    func paragraph() -> String {
+        return self.map({ $0.description }).joined(separator: "\n")
     }
 }
 
@@ -80,12 +88,15 @@ public struct TextTable {
     public var columnFence = "|"
     public var rowFence = "-"
     public var cornerFence = "+"
+    public var header: String? = nil
 
-    public init(columns: [TextTableColumn]) {
+    public init(columns: [TextTableColumn], header: String? = nil) {
         self.columns = columns
+        self.header = header
     }
 
-    public init<T: TextTableObject>(objects: [T]) {
+    public init<T: TextTableObject>(objects: [T], header: String? = nil) {
+        self.header = header
         columns = objects.isEmpty ? [] : type(of: objects[0]).tableHeaders.map { TextTableColumn(header: $0) }
         objects.forEach { addRow(values: $0.tableValues) }
     }
@@ -103,12 +114,35 @@ public struct TextTable {
 
     public func render() -> String {
         let separator = fence(strings: columns.map({ column in
-            return repeatElement(rowFence, count: column.width + 2).joined(separator: "")
+            return repeatElement(rowFence, count: column.width + 2).joined()
         }), separator: cornerFence)
-        let header = fence(strings: columns.map({ " \($0.header.withPadding(count: $0.width)) " }), separator: columnFence)
+
+        var top: String
+        if let tableHeader = renderTableHeader() {
+            top = tableHeader
+        } else {
+            top = separator
+        }
+
+        let columnHeaders = fence(strings: columns.map({ " \($0.header.withPadding(count: $0.width)) " }), separator: columnFence)
+
         let values = columns.isEmpty ? "" : (0..<columns.first!.values.count).map({ rowIndex in
             fence(strings: columns.map({ " \($0.values[rowIndex].withPadding(count: $0.width)) " }), separator: columnFence)
-        }).joined(separator: "\n")
-        return [separator, header, separator, values, separator].joined(separator: "\n")
+        }).paragraph()
+
+        return [top, columnHeaders, separator, values, separator].paragraph()
+    }
+
+    private func renderTableHeader() -> String? {
+        guard let header = header else {
+            return nil
+        }
+
+        let separator = cornerFence +
+            repeatElement(rowFence, count: columns.reduce(0, { $0 + $1.width + 2 }) + columns.count - 1).joined() +
+            cornerFence
+        let title = fence(strings: [" \(header.withPadding(count: separator.characters.count - 4)) "], separator: columnFence)
+
+        return [separator, title, separator].paragraph()
     }
 }
