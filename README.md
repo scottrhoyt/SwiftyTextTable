@@ -9,6 +9,8 @@ A lightweight Swift library for generating text tables.
 ![Platform OS X + Linux](https://img.shields.io/badge/Platform-OS%20X%20%2B%20Linux-blue.svg)
 [![Language Swift 3.0](https://img.shields.io/badge/Language-Swift%203.0-orange.svg)](https://swift.org)
 
+![Example](http://i.imgur.com/utoa6TK.png)
+
 ## Swift Language Support
 
 `SwiftyTextTable` is now Swift 3.0 compatible! The last release to support Swift
@@ -77,6 +79,21 @@ print(tableString)
 | 11  | 22  | 33  |
 +-----+-----+-----+
 */
+
+// Put a header on the table if you'd like
+table.header = "my foo table"
+print(table.render())
+
+/*
++-----------------+
+| my foo table    |
++-----------------+
+| foo | bar | baz |
++-----+-----+-----+
+| 1   | 2   | 3   |
+| 11  | 22  | 33  |
++-----+-----+-----+
+*/
 ```
 
 Any `CustomStringConvertible` can be used for row `values`.
@@ -134,7 +151,7 @@ print(tableString)
 */
 ```
 
-#### Console Formatting Support
+### Console Formatting Support
 *Not currently available in Linux.*
 
 `SwiftyTextTable` will recognize many console escape sequences used to format
@@ -147,9 +164,9 @@ Let's say you have an array of objects that looks this:
 
 ```swift
 enum AnimalType: String, CustomStringConvertible {
-    case Dog = "Dog"
-    case Cat = "Cat"
-    case Gorilla = "Gorilla"
+    case dog = "Dog"
+    case cat = "Cat"
+    case gorilla = "Gorilla"
 
     var description: String {
         return self.rawValue
@@ -162,9 +179,9 @@ struct Pet {
     let canHazPizza: Bool
 }
 
-let furball = Pet(type: .Cat, name: "Furball", canHazPizza: false)
-let bestFriend = Pet(type: .Dog, name: "Best Friend", canHazPizza: true)
-let scary = Pet(type: .Gorilla, name: "Scary", canHazPizza: true)
+let furball = Pet(type: .cat, name: "Furball", canHazPizza: false)
+let bestFriend = Pet(type: .dog, name: "Best Friend", canHazPizza: true)
+let scary = Pet(type: .gorilla, name: "Scary", canHazPizza: true)
 let pets = [furball, bestFriend, scary]
 ```
 
@@ -173,12 +190,17 @@ by having `Pet` conform to `TextTableObject`:
 
 ```swift
 extension Pet: TextTableObject {
-    static var tableHeaders: [String] {
+    static var columnHeaders: [String] {
         return ["Name", "Animal", "Can Haz Pizza?"]
     }
 
     var tableValues: [CustomStringConvertible] {
         return [name, type, canHazPizza ? "yes" : "no"]
+    }
+
+    // Optional
+    static var tableHeader: String? {
+      return "My Pets"
     }
 }
 ```
@@ -190,7 +212,9 @@ let table = TextTable(objects: pets)
 print(table.render())
 
 /*
-+-------------+---------+----------------+
++----------------------------------------+
+| My Pets                                |
++----------------------------------------+
 | Name        | Animal  | Can Haz Pizza? |
 +-------------+---------+----------------+
 | Furball     | Cat     | no             |

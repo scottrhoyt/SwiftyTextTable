@@ -34,6 +34,22 @@ class SwiftyTextTableTests: XCTestCase {
         XCTAssertEqual(output, expected)
     }
 
+    func testRenderDefaultWithHeader() {
+        var table = fooTable()
+        table.header = "foo table"
+        let output = table.render()
+        let expected = "+-----------------+\n" +
+                       "| foo table       |\n" +
+                       "+-----------------+\n" +
+                       "| foo | bar | baz |\n" +
+                       "+-----+-----+-----+\n" +
+                       "| 1   | 2   |     |\n" +
+                       "| 11  | 22  | 33  |\n" +
+                       "| 111 | 222 | 333 |\n" +
+                       "+-----+-----+-----+"
+        XCTAssertEqual(output, expected)
+    }
+
     func testRenderCustom() {
         var table = fooTable()
         table.columnFence = "!"
@@ -41,6 +57,25 @@ class SwiftyTextTableTests: XCTestCase {
         table.cornerFence = "."
         let output = table.render()
         let expected = ".*****.*****.*****.\n" +
+                       "! foo ! bar ! baz !\n" +
+                       ".*****.*****.*****.\n" +
+                       "! 1   ! 2   !     !\n" +
+                       "! 11  ! 22  ! 33  !\n" +
+                       "! 111 ! 222 ! 333 !\n" +
+                       ".*****.*****.*****."
+        XCTAssertEqual(output, expected)
+    }
+
+    func testRenderCustomWithHeader() {
+        var table = fooTable()
+        table.columnFence = "!"
+        table.rowFence = "*"
+        table.cornerFence = "."
+        table.header = "foo table"
+        let output = table.render()
+        let expected = ".*****************.\n" +
+                       "! foo table       !\n" +
+                       ".*****************.\n" +
                        "! foo ! bar ! baz !\n" +
                        ".*****.*****.*****.\n" +
                        "! 1   ! 2   !     !\n" +
@@ -80,7 +115,7 @@ class SwiftyTextTableTests: XCTestCase {
     func testTableObjects() {
         // swiftlint:disable:next nesting
         struct TableObject: TextTableObject {
-            static var tableHeaders: [String] {
+            static var columnHeaders: [String] {
                 return [ "foo", "bar", "baz"]
             }
 
@@ -111,11 +146,60 @@ class SwiftyTextTableTests: XCTestCase {
         XCTAssertEqual(output, expected)
 
         let emptyOutput = TextTable(objects: [TableObject]()).render()
-        let emptyExpected = "++\n" +
-                            "||\n" +
-                            "++\n" +
-                              "\n" +
-                            "++"
+        let emptyExpected = "+-----+-----+-----+\n" +
+                            "| foo | bar | baz |\n" +
+                            "+-----+-----+-----+\n" +
+                            "\n"                    +
+                            "+-----+-----+-----+"
+        XCTAssertEqual(emptyOutput, emptyExpected)
+    }
+
+    func testTableObjectsWithHeader() {
+        // swiftlint:disable:next nesting
+        struct TableObject: TextTableObject {
+            static var tableHeader: String? {
+                return "foo table"
+            }
+            static var columnHeaders: [String] {
+                return [ "foo", "bar", "baz"]
+            }
+
+            let foo: Int
+            let bar: String
+            let baz: Double
+
+            var tableValues: [CustomStringConvertible] {
+                return [foo, bar, baz]
+            }
+        }
+
+        let objects = [
+            TableObject(foo: 1, bar: "2", baz: 3),
+            TableObject(foo: 11, bar: "22", baz: 33),
+            TableObject(foo: 111, bar: "222", baz: 333)
+        ]
+
+        let output = TextTable(objects: objects).render()
+        let expected = "+-------------------+\n" +
+                       "| foo table         |\n" +
+                       "+-------------------+\n" +
+                       "| foo | bar | baz   |\n" +
+                       "+-----+-----+-------+\n" +
+                       "| 1   | 2   | 3.0   |\n" +
+                       "| 11  | 22  | 33.0  |\n" +
+                       "| 111 | 222 | 333.0 |\n" +
+                       "+-----+-----+-------+"
+
+        XCTAssertEqual(output, expected)
+
+        let emptyOutput = TextTable(objects: [TableObject]()).render()
+        let emptyExpected = "+-----------------+\n" +
+                            "| foo table       |\n" +
+                            "+-----------------+\n" +
+                            "| foo | bar | baz |\n" +
+                            "+-----+-----+-----+\n" +
+                            "\n"                    +
+                            "+-----+-----+-----+"
         XCTAssertEqual(emptyOutput, emptyExpected)
     }
 }
@@ -125,9 +209,12 @@ class SwiftyTextTableTests: XCTestCase {
         static var allTests: [(String, (SwiftyTextTableTests) -> () throws -> Void)] {
             return [
                 ("testRenderDefault", testRenderDefault),
+                ("testRenderDefaultWithHeader", testRenderDefaultWithHeader),
                 ("testRenderCustom", testRenderCustom),
+                ("testRenderCustomWithHeader", testRenderCustomWithHeader),
                 ("testStripping", testStripping),
                 ("testTableObjects", testTableObjects),
+                ("testTableObjectsWithHeader", testTableObjectsWithHeader)
             ]
         }
     }
