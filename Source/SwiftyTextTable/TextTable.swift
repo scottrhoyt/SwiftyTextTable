@@ -62,8 +62,15 @@ private extension Array where Element: CustomStringConvertible {
 // MARK: - TextTable Protocols
 
 public protocol TextTableObject {
-    static var tableHeaders: [String] { get }
+    static var tableHeader: String? { get }
+    static var columnHeaders: [String] { get }
     var tableValues: [CustomStringConvertible] { get }
+}
+
+public extension TextTableObject {
+    static var tableHeader: String? {
+        return nil
+    }
 }
 
 private func fence(strings: [String], separator: String) -> String {
@@ -96,8 +103,8 @@ public struct TextTable {
     }
 
     public init<T: TextTableObject>(objects: [T], header: String? = nil) {
-        self.header = header
-        columns = objects.isEmpty ? [] : type(of: objects[0]).tableHeaders.map { TextTableColumn(header: $0) }
+        self.header = header ?? T.tableHeader
+        columns = T.columnHeaders.map { TextTableColumn(header: $0) }
         objects.forEach { addRow(values: $0.tableValues) }
     }
 
