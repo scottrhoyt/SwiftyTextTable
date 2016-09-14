@@ -36,7 +36,7 @@ let package = Package(
     name: "YOUR_PROJECT_NAME",
     targets: [],
     dependencies: [
-        .Package(url: "https://github.com/scottrhoyt/SwiftyTextTable.git", versions: "0.3.1" ..< Version.max)
+        .Package(url: "https://github.com/scottrhoyt/SwiftyTextTable.git", "0.4.0")
     ]
 )
 ```
