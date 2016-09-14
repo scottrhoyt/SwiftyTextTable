@@ -124,12 +124,7 @@ public struct TextTable {
             return repeatElement(rowFence, count: column.width + 2).joined()
         }), separator: cornerFence)
 
-        var top: String
-        if let tableHeader = renderTableHeader() {
-            top = tableHeader
-        } else {
-            top = separator
-        }
+        let top = renderTableHeader() ?? separator
 
         let columnHeaders = fence(strings: columns.map({ " \($0.header.withPadding(count: $0.width)) " }), separator: columnFence)
 
