@@ -140,8 +140,9 @@ public struct TextTable {
             return nil
         }
 
+        let calculateWidth: (Int, TextTableColumn) -> Int = { $0 + $1.width + 2 }
         let separator = cornerFence +
-            repeatElement(rowFence, count: columns.reduce(0, { $0 + $1.width + 2 }) + columns.count - 1).joined() +
+            repeatElement(rowFence, count: columns.reduce(0, calculateWidth) + columns.count - 1).joined() +
             cornerFence
         let title = fence(strings: [" \(header.withPadding(count: separator.characters.count - 4)) "], separator: columnFence)
 
