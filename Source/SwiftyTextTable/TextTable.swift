@@ -85,15 +85,23 @@ private func fence(strings: [String], separator: String) -> String {
     return separator + strings.joined(separator: separator) + separator
 }
 
+/// Represents a column in a `TextTable`.
 public struct TextTableColumn {
+
+    /// The header for the column.
     public var header: String
+
+    /// The values contained in this column. Each value represents another row.
     fileprivate var values: [String] = []
 
+    /// Initialize a new column for inserting into a `TextTable`.
     public init(header: String) {
         self.header = header
     }
 
+    /// The minimum width of the column needed to accomodate all values in this column. O(n) to compute.
     public var width: Int {
+        // FIXME: This should probably be a function because of it's O(n) complexity.
         return max(header.strippedLength(), values.reduce(0) { max($0, $1.strippedLength()) })
     }
 }
