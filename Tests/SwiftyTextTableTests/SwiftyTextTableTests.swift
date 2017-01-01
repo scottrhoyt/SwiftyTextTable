@@ -90,31 +90,31 @@ class SwiftyTextTableTests: XCTestCase {
             return
         #else
             let c1 = TextTableColumn(header: "\u{001B}[0mHello\u{001B}[0m")
-            XCTAssertEqual(c1.width, 5)
+            XCTAssertEqual(c1.width(), 5)
 
             let c2 = TextTableColumn(header: "\u{001B}[31m\u{001B}[4;31;93mHello World\u{001B}[0m\u{001B}[0m")
-            XCTAssertEqual(c2.width, 11)
+            XCTAssertEqual(c2.width(), 11)
 
             let c3 = TextTableColumn(header: "\u{001B}[0m\u{001B}[0m")
-            XCTAssertEqual(c3.width, 0)
+            XCTAssertEqual(c3.width(), 0)
 
             let c4 = TextTableColumn(header: "\u{001B}[31mHello World\u{001B}[0m")
-            XCTAssertEqual(c4.width, 11)
+            XCTAssertEqual(c4.width(), 11)
 
             let c5 = TextTableColumn(header: "\u{001B}[4;31;42;93;5mHello World\u{001B}[0m")
-            XCTAssertEqual(c5.width, 11)
+            XCTAssertEqual(c5.width(), 11)
 
             let c6 = TextTableColumn(header: "\u{001B}[4;31;93mHello World\u{001B}[0m")
-            XCTAssertEqual(c6.width, 11)
+            XCTAssertEqual(c6.width(), 11)
 
             let c7 = TextTableColumn(header: "Hello World")
-            XCTAssertEqual(c7.width, 11)
+            XCTAssertEqual(c7.width(), 11)
         #endif
     }
 
-    func testTableObjects() {
+    func testTextTableRepresentables() {
         // swiftlint:disable:next nesting
-        struct TableObject: TextTableObject {
+        struct TableObject: TextTableRepresentable {
             static var columnHeaders: [String] {
                 return [ "foo", "bar", "baz"]
             }
@@ -154,9 +154,9 @@ class SwiftyTextTableTests: XCTestCase {
         XCTAssertEqual(emptyOutput, emptyExpected)
     }
 
-    func testTableObjectsWithHeader() {
+    func testTextTableRepresentablesWithHeader() {
         // swiftlint:disable:next nesting
-        struct TableObject: TextTableObject {
+        struct TableObject: TextTableRepresentable {
             static var tableHeader: String? {
                 return "foo table"
             }
@@ -213,8 +213,8 @@ class SwiftyTextTableTests: XCTestCase {
                 ("testRenderCustom", testRenderCustom),
                 ("testRenderCustomWithHeader", testRenderCustomWithHeader),
                 ("testStripping", testStripping),
-                ("testTableObjects", testTableObjects),
-                ("testTableObjectsWithHeader", testTableObjectsWithHeader)
+                ("testTextTableRepresentables", testTextTableRepresentables),
+                ("testTextTableRepresentablesWithHeader", testTextTableRepresentablesWithHeader)
             ]
         }
     }
