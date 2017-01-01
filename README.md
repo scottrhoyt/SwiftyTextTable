@@ -96,7 +96,7 @@ print(table.render())
 
 Any `CustomStringConvertible` can be used for row `values`.
 
-### Creating Tables from Arrays of Objects with `TextTableObject`
+### Creating Tables from Arrays of Objects with `TextTableRepresentable`
 
 Let's say you have an array of objects that looks this:
 
@@ -124,10 +124,10 @@ let pets = [furball, bestFriend, scary]
 ```
 
 Now you want to print a table containing your `pets`. You can accomplish this
-by having `Pet` conform to `TextTableObject`:
+by having `Pet` conform to `TextTableRepresentable`:
 
 ```swift
-extension Pet: TextTableObject {
+extension Pet: TextTableRepresentable {
     static var columnHeaders: [String] {
         return ["Name", "Animal", "Can Haz Pizza?"]
     }
@@ -146,8 +146,7 @@ extension Pet: TextTableObject {
 You can now print a table of your `pets` simply:
 
 ```swift
-let table = TextTable(objects: pets)
-print(table.render())
+print(pets.renderTextTable())
 
 /*
 +----------------------------------------+
