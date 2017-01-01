@@ -38,7 +38,7 @@
             <a class="nav-group-name-link" href="Protocols.html">Protocols</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Protocols/TextTableObject.html">TextTableObject</a>
+                <a class="nav-group-task-link" href="Protocols/TextTableRepresentable.html">TextTableRepresentable</a>
               </li>
             </ul>
           </li>
@@ -98,10 +98,6 @@ install <code>SwiftyTextTable</code> by adding the proper description to your
     <span class="p">]</span>
 <span class="p">)</span>
 </code></pre>
-
-<p>Note that the <a href="https://swift.org/package-manager">Swift Package Manager</a> is
-still in early design and development, for more infomation checkout its
-<a href="https://github.com/apple/swift-package-manager">GitHub Page</a></p>
 <a href='#manual' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='manual'>Manual</h3>
 
 <p>Simply copy the <code>*.swift</code> files from the <code>Source/SwiftyTextTable</code> directory into
@@ -151,7 +147,7 @@ your project.</p>
 </code></pre>
 
 <p>Any <code>CustomStringConvertible</code> can be used for row <code>values</code>.</p>
-<a href='#creating-tables-from-arrays-of-objects-with-code-texttableobject-code' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='creating-tables-from-arrays-of-objects-with-code-texttableobject-code'>Creating Tables from Arrays of Objects with <code>TextTableObject</code></h3>
+<a href='#creating-tables-from-arrays-of-objects-with-code-texttablerepresentable-code' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='creating-tables-from-arrays-of-objects-with-code-texttablerepresentable-code'>Creating Tables from Arrays of Objects with <code>TextTableRepresentable</code></h3>
 
 <p>Let&rsquo;s say you have an array of objects that looks this:</p>
 <pre class="highlight swift"><code><span class="kd">enum</span> <span class="kt">AnimalType</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="kt">CustomStringConvertible</span> <span class="p">{</span>
@@ -177,8 +173,8 @@ your project.</p>
 </code></pre>
 
 <p>Now you want to print a table containing your <code>pets</code>. You can accomplish this
-by having <code>Pet</code> conform to <code>TextTableObject</code>:</p>
-<pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">Pet</span><span class="p">:</span> <span class="kt">TextTableObject</span> <span class="p">{</span>
+by having <code>Pet</code> conform to <code>TextTableRepresentable</code>:</p>
+<pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">Pet</span><span class="p">:</span> <span class="kt">TextTableRepresentable</span> <span class="p">{</span>
     <span class="kd">static</span> <span class="k">var</span> <span class="nv">columnHeaders</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">]</span> <span class="p">{</span>
         <span class="k">return</span> <span class="p">[</span><span class="s">"Name"</span><span class="p">,</span> <span class="s">"Animal"</span><span class="p">,</span> <span class="s">"Can Haz Pizza?"</span><span class="p">]</span>
     <span class="p">}</span>
@@ -195,8 +191,7 @@ by having <code>Pet</code> conform to <code>TextTableObject</code>:</p>
 </code></pre>
 
 <p>You can now print a table of your <code>pets</code> simply:</p>
-<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">table</span> <span class="o">=</span> <span class="kt">TextTable</span><span class="p">(</span><span class="nv">objects</span><span class="p">:</span> <span class="n">pets</span><span class="p">)</span>
-<span class="nf">print</span><span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="nf">render</span><span class="p">())</span>
+<pre class="highlight swift"><code><span class="nf">print</span><span class="p">(</span><span class="n">pets</span><span class="o">.</span><span class="nf">renderTextTable</span><span class="p">())</span>
 
 <span class="cm">/*
 +----------------------------------------+
@@ -259,11 +254,12 @@ when there are fewer <code>values</code> than columns. <code>TextTable</code> wi
 </code></pre>
 <a href='#console-formatting-support' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='console-formatting-support'>Console Formatting Support</h3>
 
-<p><em>Not currently available in Linux.</em></p>
-
 <p><code>SwiftyTextTable</code> will recognize many console escape sequences used to format
 output (e.g. <a href="https://github.com/onevcat/Rainbow">Rainbow</a>) and account for them
 in constructing the table.</p>
+<a href='#api-reference' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='api-reference'>API Reference</h3>
+
+<p>Check out the full API reference <a href="https://github.com/scottrhoyt/SwiftyTextTable/blob/master/docs/index.html">here</a>.</p>
 <a href='#license' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='license'>License</h2>
 
 <p>SwiftyTextTable is released under the <a href="https://github.com/scottrhoyt/SwiftyTextTable/blob/master/LICENSE">MIT License</a>.</p>
