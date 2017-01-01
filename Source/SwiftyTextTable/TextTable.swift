@@ -106,24 +106,55 @@ public struct TextTableColumn {
     }
 }
 
+/// Used to create a tabular representation of data.
 public struct TextTable {
+
+    /// The columns within the table.
     private var columns: [TextTableColumn]
+
+    /// The `String` used to separate columns in the table. Defaults to "|".
     public var columnFence = "|"
+
+    /// The `String` used to separate rows in the table. Defaults to "-".
     public var rowFence = "-"
+
+    /// The `String` used to mark the intersections of a `columnFence` and a `rowFence`. Defaults to "+".
     public var cornerFence = "+"
+
+    /// The table's header text. If set to `nil`, no header will be rendered. Defaults to `nil`.
     public var header: String? = nil
 
+    /**
+     Create a new `TextTable` from `TextTableColumn`s.
+
+     - parameters:
+       - columns: An `Array` of `TextTableColumn`s.
+       - header: The table header. Defaults to `nil`.
+    */
     public init(columns: [TextTableColumn], header: String? = nil) {
         self.columns = columns
         self.header = header
     }
 
+    /**
+     Create a new `TextTable` from an `TextTableObject`s.
+
+     - parameters:
+       - objects: An `Array` of `TextTableObject`s.
+       - header: The table header. Defaults to `nil`.
+    */
     public init<T: TextTableObject>(objects: [T], header: String? = nil) {
         self.header = header ?? T.tableHeader
         columns = T.columnHeaders.map { TextTableColumn(header: $0) }
         objects.forEach { addRow(values: $0.tableValues) }
     }
 
+    /**
+     Add a row to the table.
+
+     - parameters:
+       - values: The values contained in the new row.
+    */
     public mutating func addRow(values: [CustomStringConvertible]) {
         let values = values.count >= columns.count ? values :
             values + [CustomStringConvertible](repeating: "", count: columns.count - values.count)
@@ -135,6 +166,11 @@ public struct TextTable {
         }
     }
 
+    /**
+     Render the table to a `String`.
+
+     - returns: The `String` representation of the table.
+    */
     public func render() -> String {
         let separator = fence(strings: columns.map({ column in
             return repeatElement(rowFence, count: column.width + 2).joined()
@@ -151,6 +187,11 @@ public struct TextTable {
         return [top, columnHeaders, separator, values, separator].paragraph()
     }
 
+    /**
+     Render the table's header to a `String`.
+
+     - returns: The `String` representation of the table header. `nil` if `header` is `nil`.
+    */
     private func renderTableHeader() -> String? {
         guard let header = header else {
             return nil
