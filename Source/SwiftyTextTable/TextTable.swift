@@ -68,7 +68,7 @@ public struct TextTable {
 
      - parameters:
      - objects: An `Array` of `TextTableRepresentable`s.
-     - header: The table header. Defaults to `nil`.
+     - header: The table header. This will override the header specified by the `TextTableRepresentable`. Defaults to `nil`.
      */
     public init<T: TextTableRepresentable>(objects: [T], header: String? = nil) {
         self.header = header ?? T.tableHeader
