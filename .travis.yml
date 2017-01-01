@@ -36,8 +36,8 @@ matrix:
         - wget -q -O - https://swift.org/keys/all-keys.asc | gpg --import -
         - cd ..
         - gpg --keyserver hkp://pool.sks-keyservers.net --refresh-keys Swift
-        - export SWIFT_SNAPSHOT=swift-DEVELOPMENT-SNAPSHOT-2016-09-07-a
-        - export SWIFT_URL=https://swift.org/builds/development/ubuntu1404/$SWIFT_SNAPSHOT/$SWIFT_SNAPSHOT-ubuntu14.04.tar.gz
+        - export SWIFT_SNAPSHOT=swift-3.0.2-RELEASE
+        - export SWIFT_URL=https://swift.org/builds/$SWIFT_SNAPSHOT/ubuntu1404/$SWIFT_SNAPSHOT/$SWIFT_SNAPSHOT-ubuntu14.04.tar.gz
         - wget $SWIFT_URL
         - wget $SWIFT_URL.sig
         - gpg --verify $SWIFT_SNAPSHOT-ubuntu14.04.tar.gz.sig
