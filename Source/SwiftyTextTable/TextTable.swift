@@ -100,15 +100,18 @@ public struct TextTable {
      */
     public func render() -> String {
         let separator = fence(strings: columns.map({ column in
-            return repeatElement(rowFence, count: column.width + 2).joined()
+            return repeatElement(rowFence, count: column.width() + 2).joined()
         }), separator: cornerFence)
 
         let top = renderTableHeader() ?? separator
 
-        let columnHeaders = fence(strings: columns.map({ " \($0.header.withPadding(count: $0.width)) " }), separator: columnFence)
+        let columnHeaders = fence(
+            strings: columns.map({ " \($0.header.withPadding(count: $0.width())) " }),
+            separator: columnFence
+        )
 
         let values = columns.isEmpty ? "" : (0..<columns.first!.values.count).map({ rowIndex in
-            fence(strings: columns.map({ " \($0.values[rowIndex].withPadding(count: $0.width)) " }), separator: columnFence)
+            fence(strings: columns.map({ " \($0.values[rowIndex].withPadding(count: $0.width())) " }), separator: columnFence)
         }).paragraph()
 
         return [top, columnHeaders, separator, values, separator].paragraph()
@@ -124,9 +127,9 @@ public struct TextTable {
             return nil
         }
 
-        let calculateWidth: (Int, TextTableColumn) -> Int = { $0 + $1.width + 2 }
+        let calculatewidth: (Int, TextTableColumn) -> Int = { $0 + $1.width() + 2 }
         let separator = cornerFence +
-            repeatElement(rowFence, count: columns.reduce(0, calculateWidth) + columns.count - 1).joined() +
+            repeatElement(rowFence, count: columns.reduce(0, calculatewidth) + columns.count - 1).joined() +
         cornerFence
         let title = fence(strings: [" \(header.withPadding(count: separator.characters.count - 4)) "], separator: columnFence)
 
@@ -149,11 +152,10 @@ public struct TextTableColumn {
     }
 
     /** 
-    The minimum width of the column needed to accomodate all values in this column.
+    The minimum width() of the column needed to accomodate all values in this column.
     - Complexity: O(n)
     */
-    public var width: Int {
-        // FIXME: This should probably be a function because of it's O(n) complexity.
+    public func width() -> Int {
         return max(header.strippedLength(), values.reduce(0) { max($0, $1.strippedLength()) })
     }
 }
