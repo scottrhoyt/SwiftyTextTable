@@ -21,6 +21,7 @@ A lightweight Swift library for generating text tables.
 ### Carthage (OS X)
 You can use [Carthage](https://github.com/Carthage/Carthage) to install
 `SwiftyTextTable` by adding it to your `Cartfile`:
+
 ```
 github "scottrhoyt/SwiftyTextTable"
 ```
@@ -29,6 +30,7 @@ github "scottrhoyt/SwiftyTextTable"
 You can use [The Swift Package Manager](https://swift.org/package-manager) to
 install `SwiftyTextTable` by adding the proper description to your
 `Package.swift` file:
+
 ```swift
 import PackageDescription
 
@@ -223,6 +225,10 @@ print(tableString)
 `SwiftyTextTable` will recognize many console escape sequences used to format
 output (e.g. [Rainbow](https://github.com/onevcat/Rainbow)) and account for them
 in constructing the table.
+
+### API Reference
+
+Check out the full API reference [here](https://github.com/scottrhoyt/SwiftyTextTable/blob/master/docs/index.html).
 
 ## License
 

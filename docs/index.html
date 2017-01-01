@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>  Reference</title>
+    <link rel="stylesheet" type="text/css" href="css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="css/highlight.css" />
+    <meta charset="utf-8">
+    <script src="js/jquery.min.js" defer></script>
+    <script src="js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+
+
+    <a title="  Reference"></a>
+
+    <header class="header">
+      <p class="header-col header-col--primary">
+        <a class="header-link" href="index.html">
+           Docs
+        </a>
+         (100% documented)
+      </p>
+    
+    
+    </header>
+
+    <p class="breadcrumbs">
+      <a class="breadcrumb" href="index.html"> Reference</a>
+      <img class="carat" src="img/carat.png" />
+        Reference
+    </p>
+
+    <div class="content-wrapper">
+      <nav class="navigation">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/TextTableObject.html">TextTableObject</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Structs.html">Structs</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/TextTable.html">TextTable</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/TextTableColumn.html">TextTableColumn</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+
+        <section class="section">
+          <div class="section-content">
+            
+            <a href='#swiftytexttable' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id='swiftytexttable'>SwiftyTextTable</h1>
+
+<p>A lightweight Swift library for generating text tables.</p>
+
+<p><a href="https://travis-ci.org/scottrhoyt/SwiftyTextTable"><img src="https://travis-ci.org/scottrhoyt/SwiftyTextTable.svg?branch=master" alt="Build Status"></a>
+<a href="https://codecov.io/github/scottrhoyt/SwiftyTextTable?branch=master"><img src="https://codecov.io/github/scottrhoyt/SwiftyTextTable/coverage.svg?branch=master" alt="codecov.io"></a>
+<a href="https://github.com/Carthage/Carthage"><img src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat" alt="Carthage compatible"></a>
+<a href="https://github.com/apple/swift-package-manager"><img src="https://img.shields.io/badge/Swift%20Package%20Manager-compatible-brightgreen.svg" alt="Swift Package Manager compatible"></a>
+<img src="https://img.shields.io/badge/Platform-OS%20X%20%2B%20Linux-blue.svg" alt="Platform OS X + Linux">
+<a href="https://swift.org"><img src="https://img.shields.io/badge/Language-Swift%203.0-orange.svg" alt="Language Swift 3.0"></a></p>
+
+<p><img src="http://i.imgur.com/utoa6TK.png" alt="Example"></p>
+<a href='#swift-language-support' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='swift-language-support'>Swift Language Support</h2>
+
+<p><code>SwiftyTextTable</code> is now Swift 3.0 compatible! The last release to support Swift
+2.3 was <a href="https://github.com/scottrhoyt/SwiftyTextTable/releases/tag/0.3.1">0.3.1</a>.</p>
+<a href='#installation' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='installation'>Installation</h2>
+<a href='#carthage-os-x' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='carthage-os-x'>Carthage (OS X)</h3>
+
+<p>You can use <a href="https://github.com/Carthage/Carthage">Carthage</a> to install
+<code>SwiftyTextTable</code> by adding it to your <code>Cartfile</code>:</p>
+<pre class="highlight plaintext"><code>github "scottrhoyt/SwiftyTextTable"
+</code></pre>
+<a href='#swift-package-manager-os-x-linux' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='swift-package-manager-os-x-linux'>Swift Package Manager (OS X + Linux)</h3>
+
+<p>You can use <a href="https://swift.org/package-manager">The Swift Package Manager</a> to
+install <code>SwiftyTextTable</code> by adding the proper description to your
+<code>Package.swift</code> file:</p>
+<pre class="highlight swift"><code><span class="kd">import</span> <span class="kt">PackageDescription</span>
+
+<span class="k">let</span> <span class="nv">package</span> <span class="o">=</span> <span class="kt">Package</span><span class="p">(</span>
+    <span class="nv">name</span><span class="p">:</span> <span class="s">"YOUR_PROJECT_NAME"</span><span class="p">,</span>
+    <span class="nv">targets</span><span class="p">:</span> <span class="p">[],</span>
+    <span class="nv">dependencies</span><span class="p">:</span> <span class="p">[</span>
+        <span class="o">.</span><span class="kt">Package</span><span class="p">(</span><span class="nv">url</span><span class="p">:</span> <span class="s">"https://github.com/scottrhoyt/SwiftyTextTable.git"</span><span class="p">,</span> <span class="s">"0.5.0"</span><span class="p">)</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+</code></pre>
+
+<p>Note that the <a href="https://swift.org/package-manager">Swift Package Manager</a> is
+still in early design and development, for more infomation checkout its
+<a href="https://github.com/apple/swift-package-manager">GitHub Page</a></p>
+<a href='#manual' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='manual'>Manual</h3>
+
+<p>Simply copy the <code>*.swift</code> files from the <code>Source/SwiftyTextTable</code> directory into
+your project.</p>
+<a href='#usage' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='usage'>Usage</h2>
+<pre class="highlight swift"><code><span class="kd">import</span> <span class="kt">SwiftyTextTable</span>
+
+<span class="c1">// First create some columns</span>
+<span class="k">let</span> <span class="nv">foo</span> <span class="o">=</span> <span class="kt">TextTableColumn</span><span class="p">(</span><span class="nv">header</span><span class="p">:</span> <span class="s">"foo"</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">bar</span> <span class="o">=</span> <span class="kt">TextTableColumn</span><span class="p">(</span><span class="nv">header</span><span class="p">:</span> <span class="s">"bar"</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">baz</span> <span class="o">=</span> <span class="kt">TextTableColumn</span><span class="p">(</span><span class="nv">header</span><span class="p">:</span> <span class="s">"baz"</span><span class="p">)</span>
+
+<span class="c1">// Then create a table with the columns</span>
+<span class="k">var</span> <span class="nv">table</span> <span class="o">=</span> <span class="kt">TextTable</span><span class="p">(</span><span class="nv">columns</span><span class="p">:</span> <span class="p">[</span><span class="n">foo</span><span class="p">,</span> <span class="n">bar</span><span class="p">,</span> <span class="n">baz</span><span class="p">])</span>
+
+<span class="c1">// Then add some rows</span>
+<span class="n">table</span><span class="o">.</span><span class="nf">addRow</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="n">table</span><span class="o">.</span><span class="nf">addRow</span><span class="p">([</span><span class="mi">11</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">33</span><span class="p">])</span>
+
+<span class="c1">// Then render the table and use</span>
+<span class="k">let</span> <span class="nv">tableString</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="nf">render</span><span class="p">()</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">tableString</span><span class="p">)</span>
+
+<span class="cm">/*
++-----+-----+-----+
+| foo | bar | baz |
++-----+-----+-----+
+| 1   | 2   | 3   |
+| 11  | 22  | 33  |
++-----+-----+-----+
+*/</span>
+
+<span class="c1">// Put a header on the table if you'd like</span>
+<span class="n">table</span><span class="o">.</span><span class="n">header</span> <span class="o">=</span> <span class="s">"my foo table"</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="nf">render</span><span class="p">())</span>
+
+<span class="cm">/*
++-----------------+
+| my foo table    |
++-----------------+
+| foo | bar | baz |
++-----+-----+-----+
+| 1   | 2   | 3   |
+| 11  | 22  | 33  |
++-----+-----+-----+
+*/</span>
+</code></pre>
+
+<p>Any <code>CustomStringConvertible</code> can be used for row <code>values</code>.</p>
+<a href='#creating-tables-from-arrays-of-objects-with-code-texttableobject-code' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='creating-tables-from-arrays-of-objects-with-code-texttableobject-code'>Creating Tables from Arrays of Objects with <code>TextTableObject</code></h3>
+
+<p>Let&rsquo;s say you have an array of objects that looks this:</p>
+<pre class="highlight swift"><code><span class="kd">enum</span> <span class="kt">AnimalType</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="kt">CustomStringConvertible</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="n">dog</span> <span class="o">=</span> <span class="s">"Dog"</span>
+    <span class="k">case</span> <span class="n">cat</span> <span class="o">=</span> <span class="s">"Cat"</span>
+    <span class="k">case</span> <span class="n">gorilla</span> <span class="o">=</span> <span class="s">"Gorilla"</span>
+
+    <span class="k">var</span> <span class="nv">description</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">self</span><span class="o">.</span><span class="n">rawValue</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">struct</span> <span class="kt">Pet</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="nv">type</span><span class="p">:</span> <span class="kt">AnimalType</span>
+    <span class="k">let</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span>
+    <span class="k">let</span> <span class="nv">canHazPizza</span><span class="p">:</span> <span class="kt">Bool</span>
+<span class="p">}</span>
+
+<span class="k">let</span> <span class="nv">furball</span> <span class="o">=</span> <span class="kt">Pet</span><span class="p">(</span><span class="nv">type</span><span class="p">:</span> <span class="o">.</span><span class="n">cat</span><span class="p">,</span> <span class="nv">name</span><span class="p">:</span> <span class="s">"Furball"</span><span class="p">,</span> <span class="nv">canHazPizza</span><span class="p">:</span> <span class="kc">false</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">bestFriend</span> <span class="o">=</span> <span class="kt">Pet</span><span class="p">(</span><span class="nv">type</span><span class="p">:</span> <span class="o">.</span><span class="n">dog</span><span class="p">,</span> <span class="nv">name</span><span class="p">:</span> <span class="s">"Best Friend"</span><span class="p">,</span> <span class="nv">canHazPizza</span><span class="p">:</span> <span class="kc">true</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">scary</span> <span class="o">=</span> <span class="kt">Pet</span><span class="p">(</span><span class="nv">type</span><span class="p">:</span> <span class="o">.</span><span class="n">gorilla</span><span class="p">,</span> <span class="nv">name</span><span class="p">:</span> <span class="s">"Scary"</span><span class="p">,</span> <span class="nv">canHazPizza</span><span class="p">:</span> <span class="kc">true</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">pets</span> <span class="o">=</span> <span class="p">[</span><span class="n">furball</span><span class="p">,</span> <span class="n">bestFriend</span><span class="p">,</span> <span class="n">scary</span><span class="p">]</span>
+</code></pre>
+
+<p>Now you want to print a table containing your <code>pets</code>. You can accomplish this
+by having <code>Pet</code> conform to <code>TextTableObject</code>:</p>
+<pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">Pet</span><span class="p">:</span> <span class="kt">TextTableObject</span> <span class="p">{</span>
+    <span class="kd">static</span> <span class="k">var</span> <span class="nv">columnHeaders</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">]</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="p">[</span><span class="s">"Name"</span><span class="p">,</span> <span class="s">"Animal"</span><span class="p">,</span> <span class="s">"Can Haz Pizza?"</span><span class="p">]</span>
+    <span class="p">}</span>
+
+    <span class="k">var</span> <span class="nv">tableValues</span><span class="p">:</span> <span class="p">[</span><span class="kt">CustomStringConvertible</span><span class="p">]</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">name</span><span class="p">,</span> <span class="n">type</span><span class="p">,</span> <span class="n">canHazPizza</span> <span class="p">?</span> <span class="s">"yes"</span> <span class="p">:</span> <span class="s">"no"</span><span class="p">]</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Optional</span>
+    <span class="kd">static</span> <span class="k">var</span> <span class="nv">tableHeader</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="s">"My Pets"</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>You can now print a table of your <code>pets</code> simply:</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">table</span> <span class="o">=</span> <span class="kt">TextTable</span><span class="p">(</span><span class="nv">objects</span><span class="p">:</span> <span class="n">pets</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="nf">render</span><span class="p">())</span>
+
+<span class="cm">/*
++----------------------------------------+
+| My Pets                                |
++----------------------------------------+
+| Name        | Animal  | Can Haz Pizza? |
++-------------+---------+----------------+
+| Furball     | Cat     | no             |
+| Best Friend | Dog     | yes            |
+| Scary       | Gorilla | yes            |
++-------------+---------+----------------+
+*/</span>
+</code></pre>
+<a href='#fence-custimization' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='fence-custimization'>Fence Custimization</h3>
+
+<p>You can also customize the output of <code>TextTable.render()</code> by using different
+values for <code>columnFence</code>, <code>rowFence</code>, and <code>cornerFence</code>.</p>
+<pre class="highlight swift"><code><span class="n">table</span><span class="o">.</span><span class="n">columnFence</span> <span class="o">=</span> <span class="s">":"</span>
+<span class="n">table</span><span class="o">.</span><span class="n">rowFence</span> <span class="o">=</span> <span class="s">"."</span>
+<span class="n">table</span><span class="o">.</span><span class="n">cornerFence</span> <span class="o">=</span> <span class="s">"."</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="nf">render</span><span class="p">())</span>
+
+<span class="cm">/*
+...................
+: foo : bar : baz :
+...................
+: 1   : 2   :     :
+: 11  : 22  : 33  :
+...................
+*/</span>
+</code></pre>
+<a href='#row-padding-truncation' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='row-padding-truncation'>Row Padding/Truncation</h3>
+
+<p>When adding rows, <code>TextTable</code> will automatically pad the rows with empty strings
+when there are fewer <code>values</code> than columns. <code>TextTable</code> will also disregard all
+<code>values</code> over the column count.</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">foo</span> <span class="o">=</span> <span class="kt">TextTableColumn</span><span class="p">(</span><span class="nv">header</span><span class="p">:</span> <span class="s">"foo"</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">bar</span> <span class="o">=</span> <span class="kt">TextTableColumn</span><span class="p">(</span><span class="nv">header</span><span class="p">:</span> <span class="s">"bar"</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">baz</span> <span class="o">=</span> <span class="kt">TextTableColumn</span><span class="p">(</span><span class="nv">header</span><span class="p">:</span> <span class="s">"baz"</span><span class="p">)</span>
+
+<span class="k">var</span> <span class="nv">table</span> <span class="o">=</span> <span class="kt">TextTable</span><span class="p">(</span><span class="nv">columns</span><span class="p">:</span> <span class="p">[</span><span class="n">foo</span><span class="p">,</span> <span class="n">bar</span><span class="p">,</span> <span class="n">baz</span><span class="p">])</span>
+
+<span class="n">table</span><span class="o">.</span><span class="nf">addRow</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+<span class="n">table</span><span class="o">.</span><span class="nf">addRow</span><span class="p">([</span><span class="mi">11</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">33</span><span class="p">])</span>
+<span class="n">table</span><span class="o">.</span><span class="nf">addRow</span><span class="p">([</span><span class="mi">111</span><span class="p">,</span> <span class="mi">222</span><span class="p">,</span> <span class="mi">333</span><span class="p">,</span> <span class="mi">444</span><span class="p">])</span>
+
+<span class="k">let</span> <span class="nv">tableString</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="nf">render</span><span class="p">()</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">tableString</span><span class="p">)</span>
+
+<span class="cm">/*
++-----+-----+-----+
+| foo | bar | baz |
++-----+-----+-----+
+| 1   | 2   |     |
+| 11  | 22  | 33  |
+| 111 | 222 | 333 |
++-----+-----+-----+
+*/</span>
+</code></pre>
+<a href='#console-formatting-support' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='console-formatting-support'>Console Formatting Support</h3>
+
+<p><em>Not currently available in Linux.</em></p>
+
+<p><code>SwiftyTextTable</code> will recognize many console escape sequences used to format
+output (e.g. <a href="https://github.com/onevcat/Rainbow">Rainbow</a>) and account for them
+in constructing the table.</p>
+<a href='#license' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='license'>License</h2>
+
+<p>SwiftyTextTable is released under the <a href="https://github.com/scottrhoyt/SwiftyTextTable/blob/master/LICENSE">MIT License</a>.</p>
+
+          </div>
+        </section>
+
+
+      </article>
+    </div>
+    <section class="footer">
+      <p>&copy; 2017 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2017-01-01)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+    </section>
+  </body>
+</div>
+</html>
