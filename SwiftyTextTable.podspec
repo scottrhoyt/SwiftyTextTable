@@ -32,6 +32,7 @@ Pod::Spec.new do |s|
 
   s.homepage     = "https://github.com/scottrhoyt/SwiftyTextTable"
   s.screenshots  = "http://i.imgur.com/utoa6TK.png"
+  s.documentation_url = "http://scottrhoyt.github.io/SwiftyTextTable/"
 
 
   # ―――  Spec License  ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #

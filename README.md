@@ -222,7 +222,7 @@ in constructing the table.
 
 ### API Reference
 
-Check out the full API reference [here](https://github.com/scottrhoyt/SwiftyTextTable/blob/master/docs/index.html).
+Check out the full API reference [here](http://scottrhoyt.github.io/SwiftyTextTable/).
 
 ## License
 
