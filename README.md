@@ -226,6 +226,10 @@ print(tableString)
 output (e.g. [Rainbow](https://github.com/onevcat/Rainbow)) and account for them
 in constructing the table.
 
+### API Reference
+
+Check out the full API reference [here](https://github.com/scottrhoyt/SwiftyTextTable/blob/master/docs/index.html).
+
 ## License
 
 SwiftyTextTable is released under the [MIT License](https://github.com/scottrhoyt/SwiftyTextTable/blob/master/LICENSE).
