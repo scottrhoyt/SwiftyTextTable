@@ -43,10 +43,6 @@ let package = Package(
 )
 ```
 
-Note that the [Swift Package Manager](https://swift.org/package-manager) is
-still in early design and development, for more infomation checkout its
-[GitHub Page](https://github.com/apple/swift-package-manager)
-
 ### Manual
 
 Simply copy the `*.swift` files from the `Source/SwiftyTextTable` directory into
@@ -220,7 +216,6 @@ print(tableString)
 ```
 
 ### Console Formatting Support
-*Not currently available in Linux.*
 
 `SwiftyTextTable` will recognize many console escape sequences used to format
 output (e.g. [Rainbow](https://github.com/onevcat/Rainbow)) and account for them
