@@ -129,6 +129,7 @@
 				3B5BDCE21C63133100592068 /* Frameworks */,
 				3B5BDCE31C63133100592068 /* Headers */,
 				3B5BDCE41C63133100592068 /* Resources */,
+				3B3AB4111E19A29B0006D81D /* SwiftLint */,
 			);
 			buildRules = (
 			);
@@ -144,7 +145,6 @@
 			buildConfigurationList = 3B5BDCFD1C63133100592068 /* Build configuration list for PBXNativeTarget "SwiftyTextTableTests" */;
 			buildPhases = (
 				3B5BDCEC1C63133100592068 /* Sources */,
-				3B5BDD0B1C6320C800592068 /* SwiftLint */,
 				3B5BDCED1C63133100592068 /* Frameworks */,
 				3B5BDCEE1C63133100592068 /* Resources */,
 			);
@@ -214,7 +214,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		3B5BDD0B1C6320C800592068 /* SwiftLint */ = {
+		3B3AB4111E19A29B0006D81D /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (

@@ -1,2 +1,6 @@
 included: Source
+
+disabled_rules:
+  - closure_parameter_position
+
 line_length: 130
