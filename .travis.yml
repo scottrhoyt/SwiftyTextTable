@@ -32,18 +32,8 @@ matrix:
       sudo: required
       dist: trusty
       language: generic
-      before_install:
-        - wget -q -O - https://swift.org/keys/all-keys.asc | gpg --import -
-        - cd ..
-        - gpg --keyserver hkp://pool.sks-keyservers.net --refresh-keys Swift
-        - export SWIFT_SNAPSHOT=swift-3.0.2-RELEASE
-        - export SWIFT_URL=https://swift.org/builds/$SWIFT_SNAPSHOT/ubuntu1404/$SWIFT_SNAPSHOT/$SWIFT_SNAPSHOT-ubuntu14.04.tar.gz
-        - wget $SWIFT_URL
-        - wget $SWIFT_URL.sig
-        - gpg --verify $SWIFT_SNAPSHOT-ubuntu14.04.tar.gz.sig
-        - tar xzf $SWIFT_SNAPSHOT-ubuntu14.04.tar.gz
-        - export PATH="${PWD}/${SWIFT_SNAPSHOT}-ubuntu14.04/usr/bin:${PATH}"
-        - cd SwiftyTextTable
+      install:
+        - eval "$(curl -sL https://gist.githubusercontent.com/kylef/5c0475ff02b7c7671d2a/raw/9f442512a46d7a2af7b850d65a7e9bd31edfb09b/swiftenv-install.sh)"
 
   exclude:
     - script: placeholder # workaround for https://github.com/travis-ci/travis-ci/issues/4681
