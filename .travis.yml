@@ -25,10 +25,6 @@ matrix:
       os: osx
       osx_image: xcode8
       language: objective-c
-      before_install:
-        - export SWIFT_SNAPSHOT=swift-DEVELOPMENT-SNAPSHOT-2016-09-07-a
-        - curl https://swift.org/builds/development/xcode/$SWIFT_SNAPSHOT/$SWIFT_SNAPSHOT-osx.pkg -o swift.pkg
-        - sudo installer -pkg swift.pkg -target /
     - script:
         - swift build
         - swift test
