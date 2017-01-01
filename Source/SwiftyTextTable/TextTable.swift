@@ -75,7 +75,7 @@ public protocol TextTableObject {
 }
 
 public extension TextTableObject {
-    /// - returns: `nil`
+    /// Returns `nil`.
     static var tableHeader: String? {
         return nil
     }
@@ -99,7 +99,10 @@ public struct TextTableColumn {
         self.header = header
     }
 
-    /// The minimum width of the column needed to accomodate all values in this column. O(n) to compute.
+    /** 
+    The minimum width of the column needed to accomodate all values in this column.
+    - Complexity: O(n)
+    */
     public var width: Int {
         // FIXME: This should probably be a function because of it's O(n) complexity.
         return max(header.strippedLength(), values.reduce(0) { max($0, $1.strippedLength()) })
@@ -125,11 +128,11 @@ public struct TextTable {
     public var header: String? = nil
 
     /**
-     Create a new `TextTable` from `TextTableColumn`s.
+    Create a new `TextTable` from `TextTableColumn`s.
 
-     - parameters:
-       - columns: An `Array` of `TextTableColumn`s.
-       - header: The table header. Defaults to `nil`.
+    - parameters:
+      - columns: An `Array` of `TextTableColumn`s.
+      - header: The table header. Defaults to `nil`.
     */
     public init(columns: [TextTableColumn], header: String? = nil) {
         self.columns = columns
@@ -137,11 +140,11 @@ public struct TextTable {
     }
 
     /**
-     Create a new `TextTable` from an `TextTableObject`s.
+    Create a new `TextTable` from an `TextTableObject`s.
 
-     - parameters:
-       - objects: An `Array` of `TextTableObject`s.
-       - header: The table header. Defaults to `nil`.
+    - parameters:
+      - objects: An `Array` of `TextTableObject`s.
+      - header: The table header. Defaults to `nil`.
     */
     public init<T: TextTableObject>(objects: [T], header: String? = nil) {
         self.header = header ?? T.tableHeader
@@ -150,10 +153,10 @@ public struct TextTable {
     }
 
     /**
-     Add a row to the table.
+    Add a row to the table.
 
-     - parameters:
-       - values: The values contained in the new row.
+    - parameters:
+      - values: The values contained in the new row.
     */
     public mutating func addRow(values: [CustomStringConvertible]) {
         let values = values.count >= columns.count ? values :
@@ -167,9 +170,9 @@ public struct TextTable {
     }
 
     /**
-     Render the table to a `String`.
+    Render the table to a `String`.
 
-     - returns: The `String` representation of the table.
+    - returns: The `String` representation of the table.
     */
     public func render() -> String {
         let separator = fence(strings: columns.map({ column in
@@ -188,9 +191,9 @@ public struct TextTable {
     }
 
     /**
-     Render the table's header to a `String`.
+    Render the table's header to a `String`.
 
-     - returns: The `String` representation of the table header. `nil` if `header` is `nil`.
+    - returns: The `String` representation of the table header. `nil` if `header` is `nil`.
     */
     private func renderTableHeader() -> String? {
         guard let header = header else {
