@@ -8,11 +8,17 @@
 
 import Foundation
 
+#if os(macOS)
+    typealias Regex = NSRegularExpression
+#else
+    typealias Regex = RegularExpression
+#endif
+
 private let strippingPattern = "(?:\u{001B}\\[(?:[0-9]|;)+m)*(.*?)(?:\u{001B}\\[0m)+"
 
 // We can safely force try this regex because the pattern has be tested to work.
 // swiftlint:disable:next force_try
-private let strippingRegex = try! NSRegularExpression(pattern: strippingPattern, options: [])
+private let strippingRegex = try! Regex(pattern: strippingPattern, options: [])
 
 private extension String {
     func stripped() -> String {
