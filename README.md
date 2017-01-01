@@ -21,6 +21,7 @@ A lightweight Swift library for generating text tables.
 ### Carthage (OS X)
 You can use [Carthage](https://github.com/Carthage/Carthage) to install
 `SwiftyTextTable` by adding it to your `Cartfile`:
+
 ```
 github "scottrhoyt/SwiftyTextTable"
 ```
@@ -29,6 +30,7 @@ github "scottrhoyt/SwiftyTextTable"
 You can use [The Swift Package Manager](https://swift.org/package-manager) to
 install `SwiftyTextTable` by adding the proper description to your
 `Package.swift` file:
+
 ```swift
 import PackageDescription
 
