@@ -11,6 +11,8 @@
 * Added Documentation.
 * Re-enabled console formatting support for Linux.
 * Improved compilation time.
+* Added convenience method for rendering tables from an array of
+  `TextTableRepresentable`s (`renderTextTable`).
 
 ##### Bug Fixes
 

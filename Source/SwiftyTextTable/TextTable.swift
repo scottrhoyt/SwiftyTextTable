@@ -186,6 +186,18 @@ private func fence(strings: [String], separator: String) -> String {
     return separator + strings.joined(separator: separator) + separator
 }
 
+public extension Array where Element: TextTableRepresentable {
+
+    /**
+     Returns a rendered text table containing the data in the array.
+     - returns: A `String` containing the rendered text table.
+    */
+    public func renderTextTable() -> String {
+        let table = TextTable(objects: self)
+        return table.render()
+    }
+}
+
 // MARK: - Helper Extensions
 
 private extension String {
