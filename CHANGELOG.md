@@ -8,6 +8,7 @@
 
 * Added Documentation.
 * Re-enabled console formatting support for Linux.
+* Improved compilation time.
 
 ##### Bug Fixes
 
