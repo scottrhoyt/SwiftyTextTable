@@ -4,6 +4,7 @@
 
 * `TextTableColumn.width` was refactored to `TextTableColumn.width()` to better
   reflect the O(n) complexity of calculating this value.
+* `TextTableObject` was renamed to `TextTableRepresentable`.
 
 ##### Enhancements
 
