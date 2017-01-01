@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>TextTable Struct Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset="utf-8">
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+
+    <a name="//apple_ref/swift/Struct/TextTable" class="dashAnchor"></a>
+
+    <a title="TextTable Struct Reference"></a>
+
+    <header class="header">
+      <p class="header-col header-col--primary">
+        <a class="header-link" href="../index.html">
+           Docs
+        </a>
+         (100% documented)
+      </p>
+    
+    
+    </header>
+
+    <p class="breadcrumbs">
+      <a class="breadcrumb" href="../index.html"> Reference</a>
+      <img class="carat" src="../img/carat.png" />
+      TextTable Struct Reference
+    </p>
+
+    <div class="content-wrapper">
+      <nav class="navigation">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/TextTableObject.html">TextTableObject</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Structs.html">Structs</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/TextTable.html">TextTable</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/TextTableColumn.html">TextTableColumn</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+
+        <section class="section">
+          <div class="section-content">
+            <h1>TextTable</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">TextTable</span></code></pre>
+
+                </div>
+              </div>
+            <p>Used to create a tabular representation of data.</p>
+
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-content">
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vV15SwiftyTextTable9TextTable11columnFenceSS"></a>
+                    <a name="//apple_ref/swift/Property/columnFence" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vV15SwiftyTextTable9TextTable11columnFenceSS">columnFence</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The <code>String</code> used to separate columns in the table. Defaults to <q>|</q>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">columnFence</span> <span class="o">=</span> <span class="s">"|"</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vV15SwiftyTextTable9TextTable8rowFenceSS"></a>
+                    <a name="//apple_ref/swift/Property/rowFence" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vV15SwiftyTextTable9TextTable8rowFenceSS">rowFence</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The <code>String</code> used to separate rows in the table. Defaults to <q>-</q>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">rowFence</span> <span class="o">=</span> <span class="s">"-"</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vV15SwiftyTextTable9TextTable11cornerFenceSS"></a>
+                    <a name="//apple_ref/swift/Property/cornerFence" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vV15SwiftyTextTable9TextTable11cornerFenceSS">cornerFence</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The <code>String</code> used to mark the intersections of a <code><a href="../Structs/TextTable.html#/s:vV15SwiftyTextTable9TextTable11columnFenceSS">columnFence</a></code> and a <code><a href="../Structs/TextTable.html#/s:vV15SwiftyTextTable9TextTable8rowFenceSS">rowFence</a></code>. Defaults to <q>+</q>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">cornerFence</span> <span class="o">=</span> <span class="s">"+"</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vV15SwiftyTextTable9TextTable6headerGSqSS_"></a>
+                    <a name="//apple_ref/swift/Property/header" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vV15SwiftyTextTable9TextTable6headerGSqSS_">header</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The table&rsquo;s header text. If set to <code>nil</code>, no header will be rendered. Defaults to <code>nil</code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">header</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FV15SwiftyTextTable9TextTablecFT7columnsGSaVS_15TextTableColumn_6headerGSqSS__S0_"></a>
+                    <a name="//apple_ref/swift/Method/init(columns:header:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FV15SwiftyTextTable9TextTablecFT7columnsGSaVS_15TextTableColumn_6headerGSqSS__S0_">init(columns:header:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Create a new <code>TextTable</code> from <code><a href="../Structs/TextTableColumn.html">TextTableColumn</a></code>s.</p>
+
+<ul>
+<li>parameters:
+
+<ul>
+<li>columns: An <code>Array</code> of <code><a href="../Structs/TextTableColumn.html">TextTableColumn</a></code>s.</li>
+<li>header: The table header. Defaults to <code>nil</code>.</li>
+</ul></li>
+</ul>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">columns</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Structs/TextTableColumn.html">TextTableColumn</a></span><span class="p">],</span> <span class="nv">header</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>columns</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>An <code>Array</code> of <code>TextTableColumn</code>s.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>header</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The table header. Defaults to <code>nil</code>.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FV15SwiftyTextTable9TextTablecuRxS_15TextTableObjectrFT7objectsGSax_6headerGSqSS__S0_"></a>
+                    <a name="//apple_ref/swift/Method/init(objects:header:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FV15SwiftyTextTable9TextTablecuRxS_15TextTableObjectrFT7objectsGSax_6headerGSqSS__S0_">init(objects:header:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Create a new <code>TextTable</code> from an <code><a href="../Protocols/TextTableObject.html">TextTableObject</a></code>s.</p>
+
+<ul>
+<li>parameters:
+
+<ul>
+<li>objects: An <code>Array</code> of <code><a href="../Protocols/TextTableObject.html">TextTableObject</a></code>s.</li>
+<li>header: The table header. Defaults to <code>nil</code>.</li>
+</ul></li>
+</ul>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">init</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">:</span> <span class="kt"><a href="../Protocols/TextTableObject.html">TextTableObject</a></span><span class="o">&gt;</span><span class="p">(</span><span class="nv">objects</span><span class="p">:</span> <span class="p">[</span><span class="kt">T</span><span class="p">],</span> <span class="nv">header</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>objects</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>An <code>Array</code> of <code>TextTableObject</code>s.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>header</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The table header. Defaults to <code>nil</code>.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FV15SwiftyTextTable9TextTable6addRowFT6valuesGSaPs23CustomStringConvertible___T_"></a>
+                    <a name="//apple_ref/swift/Method/addRow(values:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FV15SwiftyTextTable9TextTable6addRowFT6valuesGSaPs23CustomStringConvertible___T_">addRow(values:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Add a row to the table.</p>
+
+<ul>
+<li>parameters:
+
+<ul>
+<li>values: The values contained in the new row.</li>
+</ul></li>
+</ul>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">mutating</span> <span class="kd">func</span> <span class="nf">addRow</span><span class="p">(</span><span class="nv">values</span><span class="p">:</span> <span class="p">[</span><span class="kt">CustomStringConvertible</span><span class="p">])</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>values</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The values contained in the new row.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FV15SwiftyTextTable9TextTable6renderFT_SS"></a>
+                    <a name="//apple_ref/swift/Method/render()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FV15SwiftyTextTable9TextTable6renderFT_SS">render()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Render the table to a <code>String</code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">render</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The <code>String</code> representation of the table.</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+      </article>
+    </div>
+    <section class="footer">
+      <p>&copy; 2017 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2017-01-01)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+    </section>
+  </body>
+</div>
+</html>
