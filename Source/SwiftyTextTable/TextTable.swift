@@ -61,13 +61,21 @@ private extension Array where Element: CustomStringConvertible {
 
 // MARK: - TextTable Protocols
 
+/// A protocol used to create a `TextTable` from an object.
 public protocol TextTableObject {
+
+    /// The text table header.
     static var tableHeader: String? { get }
+
+    /// An array column headers to represent this object's data.
     static var columnHeaders: [String] { get }
+
+    /// The values to render in the text table. Should have the same count as `columnHeaders`.
     var tableValues: [CustomStringConvertible] { get }
 }
 
 public extension TextTableObject {
+    /// - returns: `nil`
     static var tableHeader: String? {
         return nil
     }
