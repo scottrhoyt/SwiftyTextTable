@@ -22,12 +22,12 @@ private let strippingRegex = try! Regex(pattern: strippingPattern, options: [])
 
 private extension String {
     func stripped() -> String {
-        let matches = strippingRegex
-            .matches(in: self, options: [], range: NSRange(location: 0, length: self.characters.count))
-            .map {
-                NSString(string: self).substring(with: $0.rangeAt(1))
-        }
-        return matches.isEmpty ? self : matches.joined(separator: "")
+        return strippingRegex.stringByReplacingMatches(
+            in: self,
+            options: [],
+            range: NSRange(location: 0, length: characters.count),
+            withTemplate: "$1"
+        )
     }
 }
 
