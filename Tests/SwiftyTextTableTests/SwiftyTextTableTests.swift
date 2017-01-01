@@ -112,9 +112,9 @@ class SwiftyTextTableTests: XCTestCase {
         #endif
     }
 
-    func testTableObjects() {
+    func testTextTableRepresentables() {
         // swiftlint:disable:next nesting
-        struct TableObject: TextTableObject {
+        struct TableObject: TextTableRepresentable {
             static var columnHeaders: [String] {
                 return [ "foo", "bar", "baz"]
             }
@@ -154,9 +154,9 @@ class SwiftyTextTableTests: XCTestCase {
         XCTAssertEqual(emptyOutput, emptyExpected)
     }
 
-    func testTableObjectsWithHeader() {
+    func testTextTableRepresentablesWithHeader() {
         // swiftlint:disable:next nesting
-        struct TableObject: TextTableObject {
+        struct TableObject: TextTableRepresentable {
             static var tableHeader: String? {
                 return "foo table"
             }
@@ -213,8 +213,8 @@ class SwiftyTextTableTests: XCTestCase {
                 ("testRenderCustom", testRenderCustom),
                 ("testRenderCustomWithHeader", testRenderCustomWithHeader),
                 ("testStripping", testStripping),
-                ("testTableObjects", testTableObjects),
-                ("testTableObjectsWithHeader", testTableObjectsWithHeader)
+                ("testTextTableRepresentables", testTextTableRepresentables),
+                ("testTextTableRepresentablesWithHeader", testTextTableRepresentablesWithHeader)
             ]
         }
     }

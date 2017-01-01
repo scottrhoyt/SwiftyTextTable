@@ -64,13 +64,13 @@ public struct TextTable {
     }
 
     /**
-     Create a new `TextTable` from an `TextTableObject`s.
+     Create a new `TextTable` from an `TextTableRepresentable`s.
 
      - parameters:
-     - objects: An `Array` of `TextTableObject`s.
+     - objects: An `Array` of `TextTableRepresentable`s.
      - header: The table header. Defaults to `nil`.
      */
-    public init<T: TextTableObject>(objects: [T], header: String? = nil) {
+    public init<T: TextTableRepresentable>(objects: [T], header: String? = nil) {
         self.header = header ?? T.tableHeader
         columns = T.columnHeaders.map { TextTableColumn(header: $0) }
         objects.forEach { addRow(values: $0.tableValues) }
@@ -160,10 +160,10 @@ public struct TextTableColumn {
     }
 }
 
-// MARK: - TextTableObject
+// MARK: - TextTableRepresentable
 
 /// A protocol used to create a `TextTable` from an object.
-public protocol TextTableObject {
+public protocol TextTableRepresentable {
 
     /// The text table header.
     static var tableHeader: String? { get }
@@ -175,7 +175,7 @@ public protocol TextTableObject {
     var tableValues: [CustomStringConvertible] { get }
 }
 
-public extension TextTableObject {
+public extension TextTableRepresentable {
     /// Returns `nil`.
     static var tableHeader: String? {
         return nil
