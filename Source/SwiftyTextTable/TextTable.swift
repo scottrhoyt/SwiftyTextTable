@@ -8,33 +8,28 @@
 
 import Foundation
 
-// MARK: Console Escape Stripping
-// Because of an error using the Linux implementation of Foundation's RegularExpression,
-// escape stripping is only available on Apple platforms
-#if os(Linux)
-    private extension String {
-        func stripped() -> String {
-            return self
-        }
-    }
+#if os(macOS)
+    typealias Regex = NSRegularExpression
 #else
-    private let strippingPattern = "(?:\u{001B}\\[(?:[0-9]|;)+m)*(.*?)(?:\u{001B}\\[0m)+"
-
-    // We can safely force try this regex because the pattern has be tested to work.
-    // swiftlint:disable:next force_try
-    private let strippingRegex = try! NSRegularExpression(pattern: strippingPattern, options: [])
-
-    private extension String {
-        func stripped() -> String {
-            let matches = strippingRegex
-                .matches(in: self, options: [], range: NSRange(location: 0, length: self.characters.count))
-                .map {
-                    NSString(string: self).substring(with: $0.rangeAt(1))
-            }
-            return matches.isEmpty ? self : matches.joined(separator: "")
-        }
-    }
+    typealias Regex = RegularExpression
 #endif
+
+private let strippingPattern = "(?:\u{001B}\\[(?:[0-9]|;)+m)*(.*?)(?:\u{001B}\\[0m)+"
+
+// We can safely force try this regex because the pattern has be tested to work.
+// swiftlint:disable:next force_try
+private let strippingRegex = try! Regex(pattern: strippingPattern, options: [])
+
+private extension String {
+    func stripped() -> String {
+        return strippingRegex.stringByReplacingMatches(
+            in: self,
+            options: [],
+            range: NSRange(location: 0, length: characters.count),
+            withTemplate: "$1"
+        )
+    }
+}
 
 // MARK: Helper Extensions
 

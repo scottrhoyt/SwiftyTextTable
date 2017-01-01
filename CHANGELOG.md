@@ -7,6 +7,7 @@
 ##### Enhancements
 
 * Added Documentation.
+* Re-enabled console formatting support for Linux.
 
 ##### Bug Fixes
 
