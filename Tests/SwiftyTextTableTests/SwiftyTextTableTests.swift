@@ -134,7 +134,6 @@ class SwiftyTextTableTests: XCTestCase {
             TableObject(foo: 111, bar: "222", baz: 333)
         ]
 
-        let output = TextTable(objects: objects).render()
         let expected = "+-----+-----+-------+\n" +
                        "| foo | bar | baz   |\n" +
                        "+-----+-----+-------+\n" +
@@ -143,15 +142,14 @@ class SwiftyTextTableTests: XCTestCase {
                        "| 111 | 222 | 333.0 |\n" +
                        "+-----+-----+-------+"
 
-        XCTAssertEqual(output, expected)
+        XCTAssertEqual(objects.renderTextTable(), expected)
 
-        let emptyOutput = TextTable(objects: [TableObject]()).render()
         let emptyExpected = "+-----+-----+-----+\n" +
                             "| foo | bar | baz |\n" +
                             "+-----+-----+-----+\n" +
                             "\n"                    +
                             "+-----+-----+-----+"
-        XCTAssertEqual(emptyOutput, emptyExpected)
+        XCTAssertEqual([TableObject]().renderTextTable(), emptyExpected)
     }
 
     func testTextTableRepresentablesWithHeader() {
@@ -179,7 +177,6 @@ class SwiftyTextTableTests: XCTestCase {
             TableObject(foo: 111, bar: "222", baz: 333)
         ]
 
-        let output = TextTable(objects: objects).render()
         let expected = "+-------------------+\n" +
                        "| foo table         |\n" +
                        "+-------------------+\n" +
@@ -190,9 +187,8 @@ class SwiftyTextTableTests: XCTestCase {
                        "| 111 | 222 | 333.0 |\n" +
                        "+-----+-----+-------+"
 
-        XCTAssertEqual(output, expected)
+        XCTAssertEqual(objects.renderTextTable(), expected)
 
-        let emptyOutput = TextTable(objects: [TableObject]()).render()
         let emptyExpected = "+-----------------+\n" +
                             "| foo table       |\n" +
                             "+-----------------+\n" +
@@ -200,7 +196,7 @@ class SwiftyTextTableTests: XCTestCase {
                             "+-----+-----+-----+\n" +
                             "\n"                    +
                             "+-----+-----+-----+"
-        XCTAssertEqual(emptyOutput, emptyExpected)
+        XCTAssertEqual([TableObject]().renderTextTable(), emptyExpected)
     }
 }
 
