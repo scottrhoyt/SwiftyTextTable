@@ -98,66 +98,6 @@ print(table.render())
 
 Any `CustomStringConvertible` can be used for row `values`.
 
-### Fence Custimization
-
-You can also customize the output of `TextTable.render()` by using different
-values for `columnFence`, `rowFence`, and `cornerFence`.
-
-```swift
-table.columnFence = ":"
-table.rowFence = "."
-table.cornerFence = "."
-
-print(table.render())
-
-/*
-...................
-: foo : bar : baz :
-...................
-: 1   : 2   :     :
-: 11  : 22  : 33  :
-...................
-*/
-```
-
-### Row Padding/Truncation
-
-When adding rows, `TextTable` will automatically pad the rows with empty strings
-when there are fewer `values` than columns. `TextTable` will also disregard all
-`values` over the column count.
-
-```swift
-let foo = TextTableColumn(header: "foo")
-let bar = TextTableColumn(header: "bar")
-let baz = TextTableColumn(header: "baz")
-
-var table = TextTable(columns: [foo, bar, baz])
-
-table.addRow([1, 2])
-table.addRow([11, 22, 33])
-table.addRow([111, 222, 333, 444])
-
-let tableString = table.render()
-print(tableString)
-
-/*
-+-----+-----+-----+
-| foo | bar | baz |
-+-----+-----+-----+
-| 1   | 2   |     |
-| 11  | 22  | 33  |
-| 111 | 222 | 333 |
-+-----+-----+-----+
-*/
-```
-
-### Console Formatting Support
-*Not currently available in Linux.*
-
-`SwiftyTextTable` will recognize many console escape sequences used to format
-output (e.g. [Rainbow](https://github.com/onevcat/Rainbow)) and account for them
-in constructing the table.
-
 ### Creating Tables from Arrays of Objects with `TextTableObject`
 
 Let's say you have an array of objects that looks this:
@@ -223,6 +163,66 @@ print(table.render())
 +-------------+---------+----------------+
 */
 ```
+
+### Fence Custimization
+
+You can also customize the output of `TextTable.render()` by using different
+values for `columnFence`, `rowFence`, and `cornerFence`.
+
+```swift
+table.columnFence = ":"
+table.rowFence = "."
+table.cornerFence = "."
+
+print(table.render())
+
+/*
+...................
+: foo : bar : baz :
+...................
+: 1   : 2   :     :
+: 11  : 22  : 33  :
+...................
+*/
+```
+
+### Row Padding/Truncation
+
+When adding rows, `TextTable` will automatically pad the rows with empty strings
+when there are fewer `values` than columns. `TextTable` will also disregard all
+`values` over the column count.
+
+```swift
+let foo = TextTableColumn(header: "foo")
+let bar = TextTableColumn(header: "bar")
+let baz = TextTableColumn(header: "baz")
+
+var table = TextTable(columns: [foo, bar, baz])
+
+table.addRow([1, 2])
+table.addRow([11, 22, 33])
+table.addRow([111, 222, 333, 444])
+
+let tableString = table.render()
+print(tableString)
+
+/*
++-----+-----+-----+
+| foo | bar | baz |
++-----+-----+-----+
+| 1   | 2   |     |
+| 11  | 22  | 33  |
+| 111 | 222 | 333 |
++-----+-----+-----+
+*/
+```
+
+### Console Formatting Support
+*Not currently available in Linux.*
+
+`SwiftyTextTable` will recognize many console escape sequences used to format
+output (e.g. [Rainbow](https://github.com/onevcat/Rainbow)) and account for them
+in constructing the table.
 
 ## License
 
