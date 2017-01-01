@@ -129,7 +129,7 @@ public struct TextTable {
             repeatElement(rowFence, count: columns.reduce(0, calculateWidth) + columns.count - 1).joined() +
         cornerFence
         let title = fence(strings: [" \(header.withPadding(count: separator.characters.count - 4)) "], separator: columnFence)
-        
+
         return [separator, title, separator].paragraph()
     }
 }
