@@ -13,6 +13,7 @@
 * Improved compilation time.
 * Added convenience method for rendering tables from an array of
   `TextTableRepresentable`s (`renderTextTable`).
+* Now available via CocoaPods.
 
 ##### Bug Fixes
 
