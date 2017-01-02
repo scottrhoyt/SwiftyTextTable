@@ -6,6 +6,7 @@ A lightweight Swift library for generating text tables.
 [![codecov.io](https://codecov.io/github/scottrhoyt/SwiftyTextTable/coverage.svg?branch=master)](https://codecov.io/github/scottrhoyt/SwiftyTextTable?branch=master)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![Swift Package Manager compatible](https://img.shields.io/badge/Swift%20Package%20Manager-compatible-brightgreen.svg)](https://github.com/apple/swift-package-manager)
+[![CocoaPods](https://img.shields.io/cocoapods/v/SwiftyTextTable.svg)]()
 ![Platform OS X + Linux](https://img.shields.io/badge/Platform-OS%20X%20%2B%20Linux-blue.svg)
 [![Language Swift 3.0](https://img.shields.io/badge/Language-Swift%203.0-orange.svg)](https://swift.org)
 
@@ -13,14 +14,14 @@ A lightweight Swift library for generating text tables.
 
 ## Swift Language Support
 
-`SwiftyTextTable` is now Swift 3.0 compatible! The last release to support Swift
+SwiftyTextTable is now Swift 3.0 compatible! The last release to support Swift
 2.3 was [0.3.1](https://github.com/scottrhoyt/SwiftyTextTable/releases/tag/0.3.1).
 
 ## Installation
 
 ### Carthage (OS X)
 You can use [Carthage](https://github.com/Carthage/Carthage) to install
-`SwiftyTextTable` by adding it to your `Cartfile`:
+SwiftyTextTable by adding it to your `Cartfile`:
 
 ```
 github "scottrhoyt/SwiftyTextTable"
@@ -28,7 +29,7 @@ github "scottrhoyt/SwiftyTextTable"
 
 ### Swift Package Manager (OS X + Linux)
 You can use [The Swift Package Manager](https://swift.org/package-manager) to
-install `SwiftyTextTable` by adding the proper description to your
+install SwiftyTextTable by adding the proper description to your
 `Package.swift` file:
 
 ```swift
@@ -41,6 +42,15 @@ let package = Package(
         .Package(url: "https://github.com/scottrhoyt/SwiftyTextTable.git", "0.5.0")
     ]
 )
+```
+
+### CocoaPods (OS X)
+
+You can use [CocoaPods](https://cocoapods.org) to install SwiftyTextTable by
+adding it to your `Podfile`:
+
+```ruby
+pod 'SwiftyTextTable'
 ```
 
 ### Manual
@@ -216,7 +226,7 @@ print(tableString)
 
 ### Console Formatting Support
 
-`SwiftyTextTable` will recognize many console escape sequences used to format
+SwiftyTextTable will recognize many console escape sequences used to format
 output (e.g. [Rainbow](https://github.com/onevcat/Rainbow)) and account for them
 in constructing the table.
 
