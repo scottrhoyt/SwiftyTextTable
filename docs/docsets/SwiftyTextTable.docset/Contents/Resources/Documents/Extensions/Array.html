@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>TextTableColumn Struct Reference</title>
+    <title>Array Extension Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset="utf-8">
@@ -11,9 +11,9 @@
   </head>
   <body>
 
-    <a name="//apple_ref/swift/Struct/TextTableColumn" class="dashAnchor"></a>
+    <a name="//apple_ref/swift/Extension/Array" class="dashAnchor"></a>
 
-    <a title="TextTableColumn Struct Reference"></a>
+    <a title="Array Extension Reference"></a>
 
     <header class="header">
       <p class="header-col header-col--primary">
@@ -29,7 +29,7 @@
     <p class="breadcrumbs">
       <a class="breadcrumb" href="../index.html">SwiftyTextTable Reference</a>
       <img class="carat" src="../img/carat.png" />
-      TextTableColumn Struct Reference
+      Array Extension Reference
     </p>
 
     <div class="content-wrapper">
@@ -68,15 +68,14 @@
 
         <section class="section">
           <div class="section-content">
-            <h1>TextTableColumn</h1>
+            <h1>Array</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">TextTableColumn</span></code></pre>
+                  <pre class="highlight"><code><span class="kd">struct</span> <span class="kt">Array</span><span class="o">&lt;</span><span class="kt">Element</span><span class="o">&gt;</span> <span class="p">:</span> <span class="kt">RandomAccessCollection</span><span class="p">,</span> <span class="kt">MutableCollection</span></code></pre>
 
                 </div>
               </div>
-            <p>Represents a column in a <code><a href="../Structs/TextTable.html">TextTable</a></code>.</p>
-
+            
           </div>
         </section>
 
@@ -87,9 +86,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vV15SwiftyTextTable15TextTableColumn6headerSS"></a>
-                    <a name="//apple_ref/swift/Property/header" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vV15SwiftyTextTable15TextTableColumn6headerSS">header</a>
+                    <a name="/s:Fe15SwiftyTextTableRxS_22TextTableRepresentablerSa15renderTextTableFT_SS"></a>
+                    <a name="//apple_ref/swift/Method/renderTextTable()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:Fe15SwiftyTextTableRxS_22TextTableRepresentablerSa15renderTextTableFT_SS">renderTextTable()</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -97,71 +96,22 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The header for the column.</p>
+                        <p>Returns a rendered text table containing the data in the array.
+- returns: A <code>String</code> containing the rendered text table.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">header</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">renderTextTable</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">String</span></code></pre>
 
                         </div>
                       </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:FV15SwiftyTextTable15TextTableColumncFT6headerSS_S0_"></a>
-                    <a name="//apple_ref/swift/Method/init(header:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FV15SwiftyTextTable15TextTableColumncFT6headerSS_S0_">init(header:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Initialize a new column for inserting into a <code><a href="../Structs/TextTable.html">TextTable</a></code>.</p>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A <code>String</code> containing the rendered text table.</p>
 
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">header</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:FV15SwiftyTextTable15TextTableColumn5widthFT_Si"></a>
-                    <a name="//apple_ref/swift/Method/width()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FV15SwiftyTextTable15TextTableColumn5widthFT_Si">width()</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>The minimum width() of the column needed to accomodate all values in this column.
-- Complexity: O(n)</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">width</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Int</span></code></pre>
-
-                        </div>
                       </div>
                     </section>
                   </div>

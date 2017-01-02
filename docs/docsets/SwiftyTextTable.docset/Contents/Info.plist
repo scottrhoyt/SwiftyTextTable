@@ -3,11 +3,11 @@
 <plist version="1.0">
   <dict>
     <key>CFBundleIdentifier</key>
-      <string>com.jazzy.</string>
+      <string>com.jazzy.swiftytexttable</string>
     <key>CFBundleName</key>
-      <string></string>
+      <string>SwiftyTextTable</string>
     <key>DocSetPlatformFamily</key>
-      <string></string>
+      <string>swiftytexttable</string>
     <key>isDashDocset</key>
       <true/>
     <key>dashIndexFilePath</key>

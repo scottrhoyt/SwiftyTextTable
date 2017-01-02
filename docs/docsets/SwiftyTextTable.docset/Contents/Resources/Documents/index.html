@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>  Reference</title>
+    <title>SwiftyTextTable  Reference</title>
     <link rel="stylesheet" type="text/css" href="css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="css/highlight.css" />
     <meta charset="utf-8">
@@ -12,12 +12,12 @@
   <body>
 
 
-    <a title="  Reference"></a>
+    <a title="SwiftyTextTable  Reference"></a>
 
     <header class="header">
       <p class="header-col header-col--primary">
         <a class="header-link" href="index.html">
-           Docs
+          SwiftyTextTable Docs
         </a>
          (100% documented)
       </p>
@@ -26,14 +26,22 @@
     </header>
 
     <p class="breadcrumbs">
-      <a class="breadcrumb" href="index.html"> Reference</a>
+      <a class="breadcrumb" href="index.html">SwiftyTextTable Reference</a>
       <img class="carat" src="img/carat.png" />
-        Reference
+      SwiftyTextTable  Reference
     </p>
 
     <div class="content-wrapper">
       <nav class="navigation">
         <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Extensions/Array.html">Array</a>
+              </li>
+            </ul>
+          </li>
           <li class="nav-group-name">
             <a class="nav-group-name-link" href="Protocols.html">Protocols</a>
             <ul class="nav-group-tasks">
@@ -68,25 +76,26 @@
 <a href="https://codecov.io/github/scottrhoyt/SwiftyTextTable?branch=master"><img src="https://codecov.io/github/scottrhoyt/SwiftyTextTable/coverage.svg?branch=master" alt="codecov.io"></a>
 <a href="https://github.com/Carthage/Carthage"><img src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat" alt="Carthage compatible"></a>
 <a href="https://github.com/apple/swift-package-manager"><img src="https://img.shields.io/badge/Swift%20Package%20Manager-compatible-brightgreen.svg" alt="Swift Package Manager compatible"></a>
+<a href=""><img src="https://img.shields.io/cocoapods/v/SwiftyTextTable.svg" alt="CocoaPods"></a>
 <img src="https://img.shields.io/badge/Platform-OS%20X%20%2B%20Linux-blue.svg" alt="Platform OS X + Linux">
 <a href="https://swift.org"><img src="https://img.shields.io/badge/Language-Swift%203.0-orange.svg" alt="Language Swift 3.0"></a></p>
 
 <p><img src="http://i.imgur.com/utoa6TK.png" alt="Example"></p>
 <a href='#swift-language-support' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='swift-language-support'>Swift Language Support</h2>
 
-<p><code>SwiftyTextTable</code> is now Swift 3.0 compatible! The last release to support Swift
+<p>SwiftyTextTable is now Swift 3.0 compatible! The last release to support Swift
 2.3 was <a href="https://github.com/scottrhoyt/SwiftyTextTable/releases/tag/0.3.1">0.3.1</a>.</p>
 <a href='#installation' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='installation'>Installation</h2>
 <a href='#carthage-os-x' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='carthage-os-x'>Carthage (OS X)</h3>
 
 <p>You can use <a href="https://github.com/Carthage/Carthage">Carthage</a> to install
-<code>SwiftyTextTable</code> by adding it to your <code>Cartfile</code>:</p>
+SwiftyTextTable by adding it to your <code>Cartfile</code>:</p>
 <pre class="highlight plaintext"><code>github "scottrhoyt/SwiftyTextTable"
 </code></pre>
 <a href='#swift-package-manager-os-x-linux' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='swift-package-manager-os-x-linux'>Swift Package Manager (OS X + Linux)</h3>
 
 <p>You can use <a href="https://swift.org/package-manager">The Swift Package Manager</a> to
-install <code>SwiftyTextTable</code> by adding the proper description to your
+install SwiftyTextTable by adding the proper description to your
 <code>Package.swift</code> file:</p>
 <pre class="highlight swift"><code><span class="kd">import</span> <span class="kt">PackageDescription</span>
 
@@ -97,6 +106,12 @@ install <code>SwiftyTextTable</code> by adding the proper description to your
         <span class="o">.</span><span class="kt">Package</span><span class="p">(</span><span class="nv">url</span><span class="p">:</span> <span class="s">"https://github.com/scottrhoyt/SwiftyTextTable.git"</span><span class="p">,</span> <span class="s">"0.5.0"</span><span class="p">)</span>
     <span class="p">]</span>
 <span class="p">)</span>
+</code></pre>
+<a href='#cocoapods-os-x' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='cocoapods-os-x'>CocoaPods (OS X)</h3>
+
+<p>You can use <a href="https://cocoapods.org">CocoaPods</a> to install SwiftyTextTable by
+adding it to your <code>Podfile</code>:</p>
+<pre class="highlight ruby"><code><span class="n">pod</span> <span class="s1">'SwiftyTextTable'</span>
 </code></pre>
 <a href='#manual' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='manual'>Manual</h3>
 
@@ -254,12 +269,12 @@ when there are fewer <code>values</code> than columns. <code>TextTable</code> wi
 </code></pre>
 <a href='#console-formatting-support' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='console-formatting-support'>Console Formatting Support</h3>
 
-<p><code>SwiftyTextTable</code> will recognize many console escape sequences used to format
+<p>SwiftyTextTable will recognize many console escape sequences used to format
 output (e.g. <a href="https://github.com/onevcat/Rainbow">Rainbow</a>) and account for them
 in constructing the table.</p>
 <a href='#api-reference' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='api-reference'>API Reference</h3>
 
-<p>Check out the full API reference <a href="https://github.com/scottrhoyt/SwiftyTextTable/blob/master/docs/index.html">here</a>.</p>
+<p>Check out the full API reference <a href="http://scottrhoyt.github.io/SwiftyTextTable/">here</a>.</p>
 <a href='#license' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='license'>License</h2>
 
 <p>SwiftyTextTable is released under the <a href="https://github.com/scottrhoyt/SwiftyTextTable/blob/master/LICENSE">MIT License</a>.</p>
@@ -271,7 +286,7 @@ in constructing the table.</p>
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2017 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2017-01-01)</p>
+      <p>&copy; 2017 <a class="link" href="https://github.com/scottrhoyt/SwiftyTextTable" target="_blank" rel="external">Scott Hoyt</a>. All rights reserved. (Last updated: 2017-01-01)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>
