@@ -49,7 +49,7 @@ public struct TextTable {
     public var cornerFence = "+"
 
     /// The table's header text. If set to `nil`, no header will be rendered. Defaults to `nil`.
-    public var header: String? = nil
+    public var header: String?
 
     /**
      Create a new `TextTable` from `TextTableColumn`s.
