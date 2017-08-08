@@ -6,7 +6,7 @@ script: placeholder # workaround for https://github.com/travis-ci/travis-ci/issu
 matrix:
   include:
     - script: set -o pipefail && xcodebuild -scheme SwiftyTextTable -project SwiftyTextTable.xcodeproj clean build test | xcpretty
-      env: JOB=Xcode
+      env: JOB=Xcode8
       os: osx
       osx_image: xcode8.3
       language: objective-c
@@ -18,6 +18,11 @@ matrix:
       before_deploy:
         - carthage build --no-skip-current
         - carthage archive $FRAMEWORK_NAME
+    - script: set -o pipefail && xcodebuild -scheme SwiftyTextTable -project SwiftyTextTable.xcodeproj clean build test | xcpretty
+      env: JOB=Xcode9
+      os: osx
+      osx_image: xcode9
+      language: objective-c
     - script:
         - TOOLCHAINS=swift swift build
         - TOOLCHAINS=swift swift test
@@ -47,4 +52,4 @@ deploy:
   on:
     repo: scottrhoyt/SwiftyTextTable
     tags: true
-    condition: $JOB = Xcode
+    condition: $JOB = Xcode8
