@@ -8,11 +8,7 @@
 
 import Foundation
 
-#if os(macOS)
-    typealias Regex = NSRegularExpression
-#else
-    typealias Regex = RegularExpression
-#endif
+typealias Regex = NSRegularExpression
 
 private let strippingPattern = "(?:\u{001B}\\[(?:[0-9]|;)+m)*(.*?)(?:\u{001B}\\[0m)+"
 
@@ -151,7 +147,7 @@ public struct TextTableColumn {
         self.header = header
     }
 
-    /** 
+    /**
     The minimum width() of the column needed to accomodate all values in this column.
     - Complexity: O(n)
     */
