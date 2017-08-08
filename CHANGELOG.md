@@ -6,11 +6,25 @@
 
 ##### Enhancements
 
-* Fixes for Xcode 9 beta 3
+* None
 
 ##### Bug Fixes
 
 * None
+
+## 0.7.0
+
+##### Breaking
+
+* None
+
+##### Enhancements
+
+* CI tests for Xcode 9 and Swift 4 on Linux support.
+
+##### Bug Fixes
+
+* Fixes for Xcode 9 beta 3
 
 ## 0.6.0: Table Service
 
