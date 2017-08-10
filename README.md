@@ -36,10 +36,9 @@ install SwiftyTextTable by adding the proper description to your
 import PackageDescription
 
 let package = Package(
-    name: "YOUR_PROJECT_NAME",
-    targets: [],
+    name: "<YOUR_PROJECT_NAME>",
     dependencies: [
-        .Package(url: "https://github.com/scottrhoyt/SwiftyTextTable.git", "0.5.0")
+        .package(url: "https://github.com/scottrhoyt/SwiftyTextTable.git", from: "0.5.0")
     ]
 )
 ```
