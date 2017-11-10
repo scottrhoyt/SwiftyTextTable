@@ -18,10 +18,15 @@ private let strippingRegex = try! Regex(pattern: strippingPattern, options: [])
 
 private extension String {
     func stripped() -> String {
+#if os(Linux)
+        let length = NSString(string: self).length
+#else
+        let length = (self as NSString).length
+#endif
         return strippingRegex.stringByReplacingMatches(
             in: self,
             options: [],
-            range: NSRange(location: 0, length: characters.count),
+            range: NSRange(location: 0, length: length),
             withTemplate: "$1"
         )
     }
@@ -127,7 +132,12 @@ public struct TextTable {
         let separator = cornerFence +
             repeatElement(rowFence, count: columns.reduce(0, calculatewidth) + columns.count - 1).joined() +
         cornerFence
-        let title = fence(strings: [" \(header.withPadding(count: separator.characters.count - 4)) "], separator: columnFence)
+#if swift(>=3.2)
+        let separatorCount = separator.count
+#else
+        let separatorCount = separator.characters.count
+#endif
+        let title = fence(strings: [" \(header.withPadding(count: separatorCount - 4)) "], separator: columnFence)
 
         return [separator, title, separator].paragraph()
     }
@@ -198,7 +208,11 @@ public extension Array where Element: TextTableRepresentable {
 
 private extension String {
     func withPadding(count: Int) -> String {
-        let length = characters.count
+#if swift(>=3.2)
+        let length = self.count
+#else
+        let length = self.characters.count
+#endif
         if length < count {
             return self +
                 repeatElement(" ", count: count - length).joined()
@@ -207,7 +221,11 @@ private extension String {
     }
 
     func strippedLength() -> Int {
+#if swift(>=3.2)
+        return stripped().count
+#else
         return stripped().characters.count
+#endif
     }
 }
 
