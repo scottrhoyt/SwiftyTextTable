@@ -10,7 +10,7 @@
 
 ##### Bug Fixes
 
-* None
+* Fix Swift 4.0.2 deprecation of String.characters
 
 ## 0.7.0
 
