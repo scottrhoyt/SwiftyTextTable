@@ -2,7 +2,7 @@
 
 ##### Breaking
 
-* None
+* Update to Swift 4.
 
 ##### Enhancements
 

@@ -8,14 +8,15 @@ A lightweight Swift library for generating text tables.
 [![Swift Package Manager compatible](https://img.shields.io/badge/Swift%20Package%20Manager-compatible-brightgreen.svg)](https://github.com/apple/swift-package-manager)
 [![CocoaPods](https://img.shields.io/cocoapods/v/SwiftyTextTable.svg)]()
 ![Platform OS X + Linux](https://img.shields.io/badge/Platform-OS%20X%20%2B%20Linux-blue.svg)
-[![Language Swift 3.0](https://img.shields.io/badge/Language-Swift%203.0-orange.svg)](https://swift.org)
+[![Language Swift 4.0](https://img.shields.io/badge/Language-Swift%204.0-orange.svg)](https://swift.org)
 
 ![Example](http://i.imgur.com/utoa6TK.png)
 
 ## Swift Language Support
 
-SwiftyTextTable is now Swift 3.0 compatible! The last release to support Swift
-2.3 was [0.3.1](https://github.com/scottrhoyt/SwiftyTextTable/releases/tag/0.3.1).
+SwiftyTextTable is now Swift 4.0 compatible! The last release to support Swift
+3.1 was [0.7.1](https://github.com/scottrhoyt/SwiftyTextTable/releases/tag/0.7.1).
+The last release to support Swift 2.3 was [0.3.1](https://github.com/scottrhoyt/SwiftyTextTable/releases/tag/0.3.1).
 
 ## Installation
 
