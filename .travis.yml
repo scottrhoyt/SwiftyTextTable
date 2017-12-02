@@ -6,9 +6,9 @@ script: placeholder # workaround for https://github.com/travis-ci/travis-ci/issu
 matrix:
   include:
     - script: set -o pipefail && xcodebuild -scheme SwiftyTextTable -project SwiftyTextTable.xcodeproj clean build test | xcpretty
-      env: JOB=Xcode8
+      env: JOB=Xcode9
       os: osx
-      osx_image: xcode8.3
+      osx_image: xcode9
       language: objective-c
       before_install:
         - ./scripts/upstall-carthage.sh
@@ -18,38 +18,24 @@ matrix:
       before_deploy:
         - carthage build --no-skip-current
         - carthage archive $FRAMEWORK_NAME
-    - script: set -o pipefail && xcodebuild -scheme SwiftyTextTable -project SwiftyTextTable.xcodeproj clean build test | xcpretty
-      env: JOB=Xcode9
-      os: osx
-      osx_image: xcode9
-      language: objective-c
     - script:
         - TOOLCHAINS=swift swift build
         - TOOLCHAINS=swift swift test
       env: JOB=SPM
       os: osx
-      osx_image: xcode8.3
+      osx_image: xcode9
       language: objective-c
     - script:
         - swift build
         - swift test
-      env: JOB=Linux SWIFT_VERSION=3.1
+      env: JOB=Linux SWIFT_VERSION=4.0
       sudo: required
       dist: trusty
       language: generic
       install:
         - eval "$(curl -sL https://gist.githubusercontent.com/kylef/5c0475ff02b7c7671d2a/raw/9f442512a46d7a2af7b850d65a7e9bd31edfb09b/swiftenv-install.sh)"
-    - script:
-        - swift build
-        - swift test
-      env: JOB=Linux SWIFT_VERSION=swift-4.0-DEVELOPMENT-SNAPSHOT-2017-08-04-a
-      sudo: required
-      dist: trusty
-      language: generic
-      install:
-        - eval "$(curl -sL https://gist.githubusercontent.com/kylef/5c0475ff02b7c7671d2a/raw/9f442512a46d7a2af7b850d65a7e9bd31edfb09b/swiftenv-install.sh)"
-  allow_failures:
-    - env: JOB=Linux SWIFT_VERSION=swift-4.0-DEVELOPMENT-SNAPSHOT-2017-08-04-a
+  #allow_failures:
+  #  - env: JOB=Linux SWIFT_VERSION=4.0
 
   exclude:
     - script: placeholder # workaround for https://github.com/travis-ci/travis-ci/issues/4681
@@ -63,4 +49,4 @@ deploy:
   on:
     repo: scottrhoyt/SwiftyTextTable
     tags: true
-    condition: $JOB = Xcode8
+    condition: $JOB = Xcode9
