@@ -2,6 +2,20 @@
 
 ##### Breaking
 
+* None
+
+##### Enhancements
+
+* None
+
+##### Bug Fixes
+
+* None
+
+## 0.8.0
+
+##### Breaking
+
 * Update to Swift 4.
 
 ##### Enhancements
