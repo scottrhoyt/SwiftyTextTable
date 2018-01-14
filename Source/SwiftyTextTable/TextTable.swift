@@ -208,11 +208,8 @@ public extension Array where Element: TextTableRepresentable {
 
 private extension String {
     func withPadding(count: Int) -> String {
-#if swift(>=3.2)
-        let length = self.count
-#else
-        let length = self.characters.count
-#endif
+        let length = self.strippedLength()
+
         if length < count {
             return self +
                 repeatElement(" ", count: count - length).joined()
