@@ -317,6 +317,10 @@ class SwiftyTextTableTests: XCTestCase {
                 ("testTextTableRepresentables", testTextTableRepresentables),
                 ("testTextTableRepresentablesWithHeader", testTextTableRepresentablesWithHeader),
                 ("testColumnHeaderUpdate", testColumnHeaderUpdate),
+                ("testAddRows", testAddRows),
+                ("testClearRows", testClearRows),
+                ("testAddRowPerformance", testAddRowPerformance),
+                ("testAddRowsPerformance", testAddRowsPerformance),
             ]
         }
     }
