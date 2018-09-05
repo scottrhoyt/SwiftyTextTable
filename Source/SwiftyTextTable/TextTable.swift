@@ -147,23 +147,41 @@ public struct TextTable {
 public struct TextTableColumn {
 
     /// The header for the column.
-    public var header: String
+    public var header: String {
+        didSet {
+            computeWidth()
+        }
+    }
 
     /// The values contained in this column. Each value represents another row.
-    fileprivate var values: [String] = []
+    fileprivate var values: [String] = [] {
+        didSet {
+            computeWidth()
+        }
+    }
 
     /// Initialize a new column for inserting into a `TextTable`.
     public init(header: String) {
         self.header = header
+        computeWidth()
     }
 
     /**
-    The minimum width() of the column needed to accomodate all values in this column.
-    - Complexity: O(n)
-    */
+     The minimum width() of the column needed to accomodate all values in this column.
+     - Complexity: O(1)
+     */
     public func width() -> Int {
-        return max(header.strippedLength(), values.reduce(0) { max($0, $1.strippedLength()) })
+        return precomputedWidth
     }
+
+    /// Pre-computed width is updated when header or values are updated.
+    private var precomputedWidth: Int = 0
+
+    /// Pre-compute width for increased performance.
+    private mutating func computeWidth() {
+        precomputedWidth = max(header.strippedLength(), values.reduce(0) { max($0, $1.strippedLength()) })
+    }
+
 }
 
 // MARK: - TextTableRepresentable
