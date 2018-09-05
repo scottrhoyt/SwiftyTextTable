@@ -205,6 +205,16 @@ class SwiftyTextTableTests: XCTestCase {
         XCTAssertEqual(foo.width(), 3)
     }
 
+    func testAddRows() {
+        let foo = TextTableColumn(header: "foo")
+        let bar = TextTableColumn(header: "bar")
+        let baz = TextTableColumn(header: "baz")
+        var table = TextTable(columns: [foo, bar, baz])
+        table.addRows(values: [["1", "2"], [11, 22, 33], [111, 222, 333, 444]])
+
+        XCTAssertEqual(fooTable().render(), table.render())
+    }
+
     func testRenderPerformance() {
         let table = presidentsTable(times: 25)
         measure {

@@ -82,6 +82,8 @@ public struct TextTable {
 
      - parameters:
      - values: The values contained in the new row.
+               If the number of values provided is less than the number of columns, empty strings are insterted.
+               Additional values that do not fit in the number of columns are discarded.
      */
     public mutating func addRow(values: [CustomStringConvertible]) {
         let values = values.count >= columns.count ? values :
@@ -91,6 +93,22 @@ public struct TextTable {
             var column = column
             column.values.append(value.description)
             return column
+        }
+    }
+
+    /**
+     Add multiple rows to the table. Use this method for faster performance.
+
+     - parameters:
+     - values: The values contained in the new rows.
+               If the number of values provided is less than the number of columns, empty strings are insterted.
+               Additional values that do not fit in the number of columns are discarded.
+     */
+    public mutating func addRows(values: [[CustomStringConvertible]]) {
+        for index in 0..<columns.count {
+            // Extract row values for this column
+            let columnValues: [String] = values.map { row in index < row.count ? row[index].description : "" }
+            columns[index].values.append(contentsOf: columnValues)
         }
     }
 
