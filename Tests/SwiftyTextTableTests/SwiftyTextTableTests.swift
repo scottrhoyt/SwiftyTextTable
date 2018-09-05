@@ -198,6 +198,12 @@ class SwiftyTextTableTests: XCTestCase {
                             "+-----+-----+-----+"
         XCTAssertEqual([TableObject]().renderTextTable(), emptyExpected)
     }
+
+    func testColumnHeaderUpdate() {
+        var foo = TextTableColumn(header: "not-foo")
+        foo.header = "foo"
+        XCTAssertEqual(foo.width(), 3)
+    }
 }
 
 #if os(Linux)
@@ -210,7 +216,8 @@ class SwiftyTextTableTests: XCTestCase {
                 ("testRenderCustomWithHeader", testRenderCustomWithHeader),
                 ("testStripping", testStripping),
                 ("testTextTableRepresentables", testTextTableRepresentables),
-                ("testTextTableRepresentablesWithHeader", testTextTableRepresentablesWithHeader)
+                ("testTextTableRepresentablesWithHeader", testTextTableRepresentablesWithHeader),
+                ("testColumnHeaderUpdate", testColumnHeaderUpdate),
             ]
         }
     }
