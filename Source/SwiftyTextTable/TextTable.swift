@@ -180,7 +180,9 @@ public struct TextTableColumn {
     /// Pre-compute width for increased performance.
     private mutating func computeWidth() {
         let valueLengths = [header.strippedLength()] + values.map { $0.strippedLength() }
-        precomputedWidth = valueLengths.max() ?? 0
+        if let max = valueLengths.max() {
+            precomputedWidth = max
+        }
     }
 
 }
