@@ -113,6 +113,15 @@ public struct TextTable {
     }
 
     /**
+     Clear all rows.
+     */
+    public mutating func clearRows() {
+        for index in 0..<columns.count {
+            columns[index].values = []
+        }
+    }
+
+    /**
      Render the table to a `String`.
 
      - returns: The `String` representation of the table.
