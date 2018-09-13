@@ -1,4 +1,4 @@
-## Master
+## 0.8.1
 
 ##### Breaking
 
@@ -6,7 +6,7 @@
 
 ##### Enhancements
 
-* None
+* Update package manifest to v4 format.
 
 ##### Bug Fixes
 
