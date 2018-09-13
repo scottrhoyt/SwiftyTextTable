@@ -1,3 +1,17 @@
+## 0.8.2
+
+##### Breaking
+
+* None
+
+##### Enhancements
+
+* None.
+
+##### Bug Fixes
+
+* Fix Swift Package Manager manifest to include SwiftyTextTable library product.
+
 ## 0.8.1
 
 ##### Breaking
