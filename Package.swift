@@ -1,8 +1,15 @@
+// swift-tools-version:4.0
 import PackageDescription
 
 let package = Package(
   name: "SwiftyTextTable",
+  products: [
+    .library(name: "SwiftyTextTable", targets: ["SwiftyTextTable"])
+  ],
   targets: [
-    Target(name: "SwiftyTextTable"),
+    .target(name: "SwiftyTextTable"),
+    .testTarget(name: "SwiftyTextTableTests", dependencies: [
+      "SwiftyTextTable",
+    ]),
   ]
 )
