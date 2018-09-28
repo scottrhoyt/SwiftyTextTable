@@ -33,6 +33,8 @@ jobs:
         - swift build
         - swift test
       name: "Linux Swift 4.0"
+      env: 
+      - SWIFT_VERSION=4.0
       sudo: required
       dist: trusty
       language: generic
