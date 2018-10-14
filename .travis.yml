@@ -8,7 +8,7 @@ matrix:
     - script: set -o pipefail && xcodebuild -scheme SwiftyTextTable -project SwiftyTextTable.xcodeproj clean build test | xcpretty
       env: JOB=Xcode9
       os: osx
-      osx_image: xcode9
+      osx_image: xcode9.4
       language: objective-c
       before_install:
         - ./scripts/upstall-carthage.sh
