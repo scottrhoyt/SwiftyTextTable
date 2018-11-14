@@ -2,11 +2,13 @@ env:
   global:
     - FRAMEWORK_NAME=SwiftyTextTable
 
-script: placeholder # workaround for https://github.com/travis-ci/travis-ci/issues/4681
-matrix:
+jobs:
   include:
-    - script: set -o pipefail && xcodebuild -scheme SwiftyTextTable -project SwiftyTextTable.xcodeproj clean build test | xcpretty
-      env: JOB=Xcode9
+    - stage: Test
+      script: set -o pipefail && xcodebuild -scheme SwiftyTextTable -project SwiftyTextTable.xcodeproj clean build test | xcpretty
+      name: "Xcode 9"
+      env: 
+      - RUN_DEPLOY=yes
       os: osx
       osx_image: xcode9.4
       language: objective-c
@@ -18,27 +20,28 @@ matrix:
       before_deploy:
         - carthage build --no-skip-current
         - carthage archive $FRAMEWORK_NAME
-    - script:
+    - stage: Test
+      script:
         - TOOLCHAINS=swift swift build
         - TOOLCHAINS=swift swift test
-      env: JOB=SPM
+      name: "Swift Package Manager"
       os: osx
       osx_image: xcode9
       language: objective-c
-    - script:
+    - stage: Test
+      script:
         - swift build
         - swift test
-      env: JOB=Linux SWIFT_VERSION=4.0
+      name: "Linux Swift 4.0"
+      env: 
+      - SWIFT_VERSION=4.0
       sudo: required
       dist: trusty
       language: generic
       install:
         - eval "$(curl -sL https://gist.githubusercontent.com/kylef/5c0475ff02b7c7671d2a/raw/9f442512a46d7a2af7b850d65a7e9bd31edfb09b/swiftenv-install.sh)"
   #allow_failures:
-  #  - env: JOB=Linux SWIFT_VERSION=4.0
-
-  exclude:
-    - script: placeholder # workaround for https://github.com/travis-ci/travis-ci/issues/4681
+  #  - env: TRAVIS_OS_NAME=linux
 
 deploy:
   provider: releases
@@ -48,5 +51,6 @@ deploy:
   skip_cleanup: true
   on:
     repo: scottrhoyt/SwiftyTextTable
+    branch: master
     tags: true
-    condition: $JOB = Xcode9
+    condition: $RUN_DEPLOY = yes
