@@ -10,7 +10,7 @@ import Foundation
 
 typealias Regex = NSRegularExpression
 
-private let strippingPattern = "(?:\u{001B}\\[(?:[0-9]|;)+m)*(.*?)(?:\u{001B}\\[0m)+"
+private let strippingPattern = "\\\u{001B}\\[([0-9][0-9]?m|[0-9](;[0-9]*)*m)"
 
 // We can safely force try this regex because the pattern has be tested to work.
 // swiftlint:disable:next force_try
@@ -27,7 +27,7 @@ private extension String {
             in: self,
             options: [],
             range: NSRange(location: 0, length: length),
-            withTemplate: "$1"
+            withTemplate: ""
         )
     }
 }
@@ -256,11 +256,8 @@ public extension Array where Element: TextTableRepresentable {
 
 private extension String {
     func withPadding(count: Int) -> String {
-#if swift(>=3.2)
-        let length = self.count
-#else
-        let length = self.characters.count
-#endif
+        let length = self.strippedLength()
+
         if length < count {
             return self +
                 repeatElement(" ", count: count - length).joined()

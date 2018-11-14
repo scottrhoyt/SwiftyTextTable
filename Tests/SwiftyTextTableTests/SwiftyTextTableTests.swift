@@ -109,6 +109,12 @@ class SwiftyTextTableTests: XCTestCase {
 
             let c7 = TextTableColumn(header: "Hello World")
             XCTAssertEqual(c7.width(), 11)
+        
+            let c8 = TextTableColumn(header: "\u{001B}[0;31mHello World\u{001B}[0;30m")
+            XCTAssertEqual(c8.width(), 11)
+        
+            let c9 = TextTableColumn(header: "\u{001B}[1;31mHello World\u{001B}[0;30m")
+            XCTAssertEqual(c9.width(), 11)
         #endif
     }
 
