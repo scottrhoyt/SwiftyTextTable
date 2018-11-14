@@ -82,6 +82,8 @@ public struct TextTable {
 
      - parameters:
      - values: The values contained in the new row.
+               If the number of values provided is less than the number of columns, empty strings are insterted.
+               Additional values that do not fit in the number of columns are discarded.
      */
     public mutating func addRow(values: [CustomStringConvertible]) {
         let values = values.count >= columns.count ? values :
@@ -91,6 +93,31 @@ public struct TextTable {
             var column = column
             column.values.append(value.description)
             return column
+        }
+    }
+
+    /**
+     Add multiple rows to the table. Use this method for faster performance.
+
+     - parameters:
+     - values: The values contained in the new rows.
+               If the number of values provided is less than the number of columns, empty strings are insterted.
+               Additional values that do not fit in the number of columns are discarded.
+     */
+    public mutating func addRows(values: [[CustomStringConvertible]]) {
+        for index in 0..<columns.count {
+            // Extract row values for this column
+            let columnValues: [String] = values.map { row in index < row.count ? row[index].description : "" }
+            columns[index].values.append(contentsOf: columnValues)
+        }
+    }
+
+    /**
+     Clear all rows.
+     */
+    public mutating func clearRows() {
+        for index in 0..<columns.count {
+            columns[index].values = []
         }
     }
 
@@ -147,23 +174,44 @@ public struct TextTable {
 public struct TextTableColumn {
 
     /// The header for the column.
-    public var header: String
+    public var header: String {
+        didSet {
+            computeWidth()
+        }
+    }
 
     /// The values contained in this column. Each value represents another row.
-    fileprivate var values: [String] = []
+    fileprivate var values: [String] = [] {
+        didSet {
+            computeWidth()
+        }
+    }
 
     /// Initialize a new column for inserting into a `TextTable`.
     public init(header: String) {
         self.header = header
+        computeWidth()
     }
 
     /**
-    The minimum width() of the column needed to accomodate all values in this column.
-    - Complexity: O(n)
-    */
+     The minimum width() of the column needed to accomodate all values in this column.
+     - Complexity: O(1)
+     */
     public func width() -> Int {
-        return max(header.strippedLength(), values.reduce(0) { max($0, $1.strippedLength()) })
+        return precomputedWidth
     }
+
+    /// Pre-computed width is updated when header or values are updated.
+    private var precomputedWidth: Int = 0
+
+    /// Pre-compute width for increased performance.
+    private mutating func computeWidth() {
+        let valueLengths = [header.strippedLength()] + values.map { $0.strippedLength() }
+        if let max = valueLengths.max() {
+            precomputedWidth = max
+        }
+    }
+
 }
 
 // MARK: - TextTableRepresentable
