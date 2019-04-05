@@ -1,3 +1,17 @@
+## 0.9.0
+
+##### Breaking
+
+* None
+
+##### Enhancements
+
+* Pre-compute column width to increase rendering performance.
+
+##### Bug Fixes
+
+* Fix column width when using terminal escape sequences such as coloring.
+
 ## 0.8.2
 
 ##### Breaking
