@@ -246,7 +246,7 @@ public extension Array where Element: TextTableRepresentable {
      Returns a rendered text table containing the data in the array.
      - returns: A `String` containing the rendered text table.
     */
-    public func renderTextTable() -> String {
+    func renderTextTable() -> String {
         let table = TextTable(objects: self)
         return table.render()
     }
