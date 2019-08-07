@@ -115,6 +115,17 @@ class SwiftyTextTableTests: XCTestCase {
         
             let c9 = TextTableColumn(header: "\u{001B}[1;31mHello World\u{001B}[0;30m")
             XCTAssertEqual(c9.width(), 11)
+
+            let c10 = TextTableColumn(header: "\u{1B}[31mHello World\u{1B}[0m")
+            XCTAssertEqual(c10.width(), 11)
+
+            // Test underline
+            let c11 = TextTableColumn(header: "\u{1B}[31;4mX\u{1B}[0m")
+            XCTAssertEqual(c11.width(), 1)
+
+            // Test bold
+            let c12 = TextTableColumn(header: "\u{1B}[31;1mX\u{1B}[0m")
+            XCTAssertEqual(c12.width(), 1)
         #endif
     }
 

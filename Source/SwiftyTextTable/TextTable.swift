@@ -10,7 +10,7 @@ import Foundation
 
 typealias Regex = NSRegularExpression
 
-private let strippingPattern = "\\\u{001B}\\[([0-9][0-9]?m|[0-9](;[0-9]*)*m)"
+private let strippingPattern = "\\\u{1B}\\[[0-9][0-9]?(;?[0-9]*)*m"
 
 // We can safely force try this regex because the pattern has be tested to work.
 // swiftlint:disable:next force_try
