@@ -124,6 +124,10 @@ class SwiftyTextTableTests: XCTestCase {
             static var columnHeaders: [String] {
                 return [ "foo", "bar", "baz"]
             }
+            
+            static var columnAlignments: [TextTableColumnAlignment] {
+                return [.left, .left, .left]
+            }
 
             let foo: Int
             let bar: String
@@ -157,6 +161,43 @@ class SwiftyTextTableTests: XCTestCase {
                             "+-----+-----+-----+"
         XCTAssertEqual([TableObject]().renderTextTable(), emptyExpected)
     }
+    
+    func testTextTableRepresentablesWithRightAlignments() {
+        // swiftlint:disable:next nesting
+        struct TableObject: TextTableRepresentable {
+            static var columnHeaders: [String] {
+                return [ "foo", "bar", "baz"]
+            }
+            
+            static var columnAlignments: [TextTableColumnAlignment] {
+                return [.right, .right, .right]
+            }
+
+            let foo: Int
+            let bar: String
+            let baz: Double
+
+            var tableValues: [CustomStringConvertible] {
+                return [foo, bar, baz]
+            }
+        }
+
+        let objects = [
+            TableObject(foo: 1, bar: "2", baz: 3),
+            TableObject(foo: 11, bar: "22", baz: 33),
+            TableObject(foo: 111, bar: "222", baz: 333)
+        ]
+
+        let expected = "+-----+-----+-------+\n" +
+                       "| foo | bar | baz   |\n" +
+                       "+-----+-----+-------+\n" +
+                       "|   1 |   2 |   3.0 |\n" +
+                       "|  11 |  22 |  33.0 |\n" +
+                       "| 111 | 222 | 333.0 |\n" +
+                       "+-----+-----+-------+"
+
+        XCTAssertEqual(objects.renderTextTable(), expected)
+    }
 
     func testTextTableRepresentablesWithHeader() {
         // swiftlint:disable:next nesting
@@ -164,6 +205,11 @@ class SwiftyTextTableTests: XCTestCase {
             static var tableHeader: String? {
                 return "foo table"
             }
+            
+            static var columnAlignments: [TextTableColumnAlignment] {
+                return [.left, .left, .left]
+            }
+            
             static var columnHeaders: [String] {
                 return [ "foo", "bar", "baz"]
             }
@@ -235,7 +281,7 @@ class SwiftyTextTableTests: XCTestCase {
 
     func testAddRowPerformance() {
         var rows = usPresidents
-        let columns = rows.removeFirst().map(TextTableColumn.init)
+        let columns = rows.removeFirst().map{TextTableColumn.init(header: $0)}
         var table = TextTable(columns: columns)
 
         measure {
@@ -249,7 +295,7 @@ class SwiftyTextTableTests: XCTestCase {
 
     func testAddRowsPerformance() {
         var rows = usPresidents
-        let columns = rows.removeFirst().map(TextTableColumn.init)
+        let columns = rows.removeFirst().map{TextTableColumn.init(header: $0)}
         var table = TextTable(columns: columns)
 
         measure {
