@@ -139,7 +139,7 @@ public struct TextTable {
         )
 
         let values = columns.isEmpty ? "" : (0..<columns.first!.values.count).map({ rowIndex in
-            fence(strings: columns.map({ " \($0.values[rowIndex].withPadding(count: $0.width())) " }), separator: columnFence)
+            fence(strings: columns.map({ " \($0.values[rowIndex].withPadding(count: $0.width(), alignment: $0.alignment)) " }), separator: columnFence)
         }).paragraph()
 
         return [top, columnHeaders, separator, values, separator].paragraph()
@@ -170,6 +170,10 @@ public struct TextTable {
     }
 }
 
+public enum TextTableColumnAlignment: Int {
+    case left = 0, center, right
+}
+
 /// Represents a column in a `TextTable`.
 public struct TextTableColumn {
 
@@ -179,6 +183,8 @@ public struct TextTableColumn {
             computeWidth()
         }
     }
+    
+    public var alignment: TextTableColumnAlignment
 
     /// The values contained in this column. Each value represents another row.
     fileprivate var values: [String] = [] {
@@ -188,8 +194,9 @@ public struct TextTableColumn {
     }
 
     /// Initialize a new column for inserting into a `TextTable`.
-    public init(header: String) {
+    public init(header: String, alignment: TextTableColumnAlignment = .left) {
         self.header = header
+        self.alignment = alignment
         computeWidth()
     }
 
@@ -255,12 +262,20 @@ public extension Array where Element: TextTableRepresentable {
 // MARK: - Helper Extensions
 
 private extension String {
-    func withPadding(count: Int) -> String {
+    func withPadding(count: Int, alignment: TextTableColumnAlignment = .left) -> String {
         let length = self.strippedLength()
 
         if length < count {
-            return self +
-                repeatElement(" ", count: count - length).joined()
+            switch alignment {
+            case .left:
+                return self +
+                    repeatElement(" ", count: count - length).joined()
+            case .right:
+                return repeatElement(" ", count: count - length).joined() + self
+            default:
+                return self +
+                    repeatElement(" ", count: count - length).joined()
+            }
         }
         return self
     }
