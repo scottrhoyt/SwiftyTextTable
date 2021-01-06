@@ -181,7 +181,7 @@ public struct TextTableColumn {
     }
 
     /// The values contained in this column. Each value represents another row.
-    fileprivate var values: [String] = [] {
+    public private(set) var values: [String] = [] {
         didSet {
             computeWidth()
         }
