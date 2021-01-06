@@ -38,7 +38,7 @@ private extension String {
 public struct TextTable {
 
     /// The columns within the table.
-    private var columns: [TextTableColumn]
+    public private(set) var columns: [TextTableColumn]
 
     /// The `String` used to separate columns in the table. Defaults to "|".
     public var columnFence = "|"
@@ -181,7 +181,7 @@ public struct TextTableColumn {
     }
 
     /// The values contained in this column. Each value represents another row.
-    fileprivate var values: [String] = [] {
+    public fileprivate(set) var values: [String] = [] {
         didSet {
             computeWidth()
         }
