@@ -266,11 +266,7 @@ private extension String {
     }
 
     func strippedLength() -> Int {
-#if swift(>=3.2)
-        return stripped().count
-#else
-        return stripped().characters.count
-#endif
+        stripped().reduce(0) { $0 + ( $1.isASCII ? 1 : 2) }
     }
 }
 
