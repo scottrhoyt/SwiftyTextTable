@@ -134,12 +134,12 @@ public struct TextTable {
         let top = renderTableHeader() ?? separator
 
         let columnHeaders = fence(
-            strings: columns.map({ " \($0.header.withPadding(count: $0.width())) " }),
+            strings: columns.map({ " \($0.header.withPadding(count: $0.width(), rightJustify: $0.rightJustify)) " }),
             separator: columnFence
         )
 
         let values = columns.isEmpty ? "" : (0..<columns.first!.values.count).map({ rowIndex in
-            fence(strings: columns.map({ " \($0.values[rowIndex].withPadding(count: $0.width())) " }), separator: columnFence)
+            fence(strings: columns.map({ " \($0.values[rowIndex].withPadding(count: $0.width(), rightJustify: $0.rightJustify)) " }), separator: columnFence)
         }).paragraph()
 
         return [top, columnHeaders, separator, values, separator].paragraph()
@@ -179,6 +179,7 @@ public struct TextTableColumn {
             computeWidth()
         }
     }
+    public var rightJustify : Bool = false
 
     /// The values contained in this column. Each value represents another row.
     fileprivate var values: [String] = [] {
@@ -255,12 +256,12 @@ public extension Array where Element: TextTableRepresentable {
 // MARK: - Helper Extensions
 
 private extension String {
-    func withPadding(count: Int) -> String {
+    func withPadding(count: Int, rightJustify: Bool = false) -> String {
         let length = self.strippedLength()
 
         if length < count {
-            return self +
-                repeatElement(" ", count: count - length).joined()
+            let padding = repeatElement(" ", count: count - length).joined()
+            return rightJustify ? padding + self : self + padding
         }
         return self
     }
