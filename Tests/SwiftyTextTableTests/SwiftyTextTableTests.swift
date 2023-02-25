@@ -11,11 +11,15 @@ import SwiftyTextTable
 
 class SwiftyTextTableTests: XCTestCase {
 
-    func fooTable() -> TextTable {
+    func fooTable(withRightJustify: Bool = false) -> TextTable {
         let foo = TextTableColumn(header: "foo")
-        let bar = TextTableColumn(header: "bar")
+        var bar = TextTableColumn(header: "bar")
         let baz = TextTableColumn(header: "baz")
+        bar.rightJustify = withRightJustify
         var table = TextTable(columns: [foo, bar, baz])
+        if withRightJustify {
+            table.header = "RIGHT JUSTIFY!"
+        }
         table.addRow(values: ["1", "2"])
         table.addRow(values: [11, 22, 33])
         table.addRow(values: [111, 222, 333, 444])
@@ -33,6 +37,13 @@ class SwiftyTextTableTests: XCTestCase {
                        "+-----+-----+-----+"
         XCTAssertEqual(output, expected)
     }
+    
+    func testPrintRightJustify(){
+        let output = fooTable(withRightJustify: true).render()
+        print( output)
+    }
+    
+    
 
     func testRenderDefaultWithHeader() {
         var table = fooTable()
